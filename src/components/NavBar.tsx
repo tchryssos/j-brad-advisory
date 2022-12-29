@@ -1,14 +1,28 @@
+import styled from '@emotion/styled';
 import { Button, Flex } from '@mantine/core';
 import Link from 'next/link';
 
 import { ABOUT_ROUTE, HOME_ROUTE } from '~/constants/routing';
+import { BREAKPOINT_VALUES } from '~/constants/theme';
 
 import { Logo } from './Logo';
 
+const Nav = styled.nav`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
 export function NavBar() {
   return (
-    <nav>
-      <Flex align="center" justify="space-between" p={16}>
+    <Nav>
+      <Flex
+        align="center"
+        justify="space-between"
+        maw={BREAKPOINT_VALUES.lg}
+        p={16}
+        w="100%"
+      >
         <Logo />
         <Flex align="center" gap={40}>
           <Link href={HOME_ROUTE}>Home</Link>
@@ -16,6 +30,6 @@ export function NavBar() {
           <Button>Contact Us</Button>
         </Flex>
       </Flex>
-    </nav>
+    </Nav>
   );
 }

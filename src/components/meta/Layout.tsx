@@ -13,10 +13,8 @@ export function Layout({ children, title }: LayoutProps) {
   return (
     <>
       <Head title={title} />
-      <AppShell header={<NavBar />}>
-        <Container maw={BREAKPOINT_VALUES.lg} px={{ _: 16, xs: 32 }}>
-          {children}
-        </Container>
+      <AppShell header={<NavBar />} padding={0}>
+        <Container maw={BREAKPOINT_VALUES.lg}>{children}</Container>
       </AppShell>
     </>
   );
