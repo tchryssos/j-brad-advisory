@@ -20,3 +20,8 @@ export const BREAKPOINT_STRINGS: Record<BreakpointSize, BreakpointString> = {
   lg: createBreakpointString(BREAKPOINT_VALUES.lg, 'min'),
   xl: createBreakpointString(BREAKPOINT_VALUES.xl, 'min'),
 };
+
+export const MEDIA_QUERY_STRING = '@media only screen and ';
+
+export const getMediaQueryMinWidth = (breakpoint: BreakpointSize): string =>
+  `${MEDIA_QUERY_STRING}${BREAKPOINT_STRINGS[breakpoint]}`;

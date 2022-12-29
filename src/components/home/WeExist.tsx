@@ -31,7 +31,7 @@ export function WeExist() {
   }, []);
 
   return (
-    <Flex direction="column" h={{ _: '', md: pxToRem(672) }} justify="center">
+    <Flex direction="column" h={{ md: pxToRem(672) }} justify="center">
       <Title order={1}>We exist to</Title>
       <Text>{swappableText[activeTextIndex]}</Text>
     </Flex>

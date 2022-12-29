@@ -1,6 +1,7 @@
 import { Flex, Text, Title } from '@mantine/core';
 
 import { AreasOfFocus } from '~/components/home/AreasOfFocus';
+import { Pillars } from '~/components/home/Pillars';
 import { WeExist } from '~/components/home/WeExist';
 import { Layout } from '~/components/meta/Layout';
 
@@ -9,6 +10,7 @@ function Home() {
     <Layout title="Home - J. Bradford Advisory">
       <WeExist />
       <AreasOfFocus />
+      <Pillars />
     </Layout>
   );
 }
