@@ -33,12 +33,6 @@ Most of the things that could be covered here are probably covered by the `next`
 2. For additional styling / customization [`emotion/react`](https://emotion.sh/docs/introduction) and [`emotion/styled`](https://emotion.sh/docs/styled) are included. See the `emotion/styled` documentation for on its usage.
 3. For testing, this repo inculdes [`jest`](https://jestjs.io/docs/getting-started) and [`react-testing-library`](https://testing-library.com/docs/react-testing-library/intro/). Your test files should follow the `Component.test.tsx` naming pattern, which will allow `jest` to find them automatically. Use `yarn test` to run your tests.
 
-## Storybook
-
-Storybook is setup to be fairly plug-and-play assuming you know Storybook already. If not, [head to their site](https://storybook.js.org/docs/react/get-started/introduction) to get the lowdown. Stories should be added to the stories directory and have filenames with the following pattern: `componentName.stories.tsx` or `componentName.stories.mdx` (I recommend installing an `mdx` editor addon if you plan on using `mdx`, which you can read more about [here](https://storybook.js.org/docs/react/writing-docs/mdx)). Whether you use `tsx` or `mdx` for your stories, you can use [doc-blocs](https://storybook.js.org/docs/react/writing-docs/doc-blocks) to enhance those stories. The storybook `addon-docs` comes included with this template.
-
-If the above rules are followed, Storybook should find the files automatically.
-
 ## Deploying
 
 Before deploying, run `yarn build` to make a production build of your app, then follow the [Next.js deployment documentation](https://nextjs.org/docs/deployment) to deploy on Vercel.
