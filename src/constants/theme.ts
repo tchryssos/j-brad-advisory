@@ -8,7 +8,7 @@ export const BREAKPOINT_VALUES: Record<BreakpointSize, number> = {
   xl: 1440,
 };
 
-const createBreakpointString = (
+export const createBreakpointString = (
   px: number,
   minOrMax: 'min' | 'max'
 ): BreakpointString => `(${minOrMax}-width: ${px}px)`;
@@ -23,5 +23,11 @@ export const BREAKPOINT_STRINGS: Record<BreakpointSize, BreakpointString> = {
 
 export const MEDIA_QUERY_STRING = '@media only screen and ';
 
-export const getMediaQueryMinWidth = (breakpoint: BreakpointSize): string =>
-  `${MEDIA_QUERY_STRING}${BREAKPOINT_STRINGS[breakpoint]}`;
+export const getMediaQueryMinWidth = (
+  breakpoint: BreakpointSize | number
+): string =>
+  `${MEDIA_QUERY_STRING}${
+    typeof breakpoint === 'number'
+      ? createBreakpointString(breakpoint, 'min')
+      : BREAKPOINT_STRINGS[breakpoint]
+  }`;
