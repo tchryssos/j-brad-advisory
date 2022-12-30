@@ -4,11 +4,7 @@ import { useMediaQuery } from '@mantine/hooks';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-import {
-  BREAKPOINT_STRINGS,
-  getMediaQueryMinWidth,
-  MEDIA_QUERY_STRING,
-} from '~/constants/theme';
+import { BREAKPOINT_STRINGS, getMediaQueryMinWidth } from '~/constants/theme';
 import { pxToRem } from '~/logic/util/styles';
 
 const swappableText = [
