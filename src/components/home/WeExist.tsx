@@ -1,10 +1,14 @@
 import styled from '@emotion/styled';
-import { Flex, Text, Title } from '@mantine/core';
+import { Container, Flex, Text, Title } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-import { BREAKPOINT_STRINGS, getMediaQueryMinWidth } from '~/constants/theme';
+import {
+  BREAKPOINT_STRINGS,
+  getMediaQueryMinWidth,
+  MEDIA_QUERY_STRING,
+} from '~/constants/theme';
 import { pxToRem } from '~/logic/util/styles';
 
 const swappableText = [
@@ -26,7 +30,28 @@ const WeExistImage = styled(Image)`
   ${getMediaQueryMinWidth(800)} {
     right: 15%;
   }
+
+  ${getMediaQueryMinWidth('md')} {
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 `;
+
+interface MdContainerProps {
+  children: React.ReactNode;
+  atLeastMd: boolean;
+}
+
+function MdContainer({ children, atLeastMd }: MdContainerProps) {
+  return atLeastMd ? (
+    <Container maw={1000} pos="relative" w="100%">
+      {children}
+    </Container>
+  ) : (
+    <>{children}</>
+  );
+}
 
 export function WeExist() {
   const atLeastMd = useMediaQuery(BREAKPOINT_STRINGS.md);
@@ -59,19 +84,21 @@ export function WeExist() {
       pos="relative"
       px={16}
     >
-      <Title fw="bold" order={1} size={atLeastMd ? 72 : 32}>
-        We exist to
-      </Title>
-      <Text fw="bold" size={atLeastMd ? 72 : 32}>
-        {swappableText[activeTextIndex]}
-      </Text>
-      <WeExistImage
-        alt=""
-        height={104}
-        role="presentation"
-        src="/wave_circle.png"
-        width={104}
-      />
+      <MdContainer atLeastMd={atLeastMd}>
+        <WeExistImage
+          alt=""
+          height={atLeastMd ? 292 : 104}
+          role="presentation"
+          src={atLeastMd ? '/mushroom_circle.png' : '/wave_circle.png'}
+          width={atLeastMd ? 292 : 104}
+        />
+        <Title fw="bold" order={1} pos="relative" size={atLeastMd ? 72 : 32}>
+          We exist to
+        </Title>
+        <Text fw="bold" pos="relative" size={atLeastMd ? 72 : 32}>
+          {swappableText[activeTextIndex]}
+        </Text>
+      </MdContainer>
     </Flex>
   );
 }
