@@ -8,24 +8,25 @@ import { pxToRem } from '~/logic/util/styles';
 
 const focusAreas = [
   [
-    'Strategic Direction',
+    'Strategic direction',
     'Marketing',
     'Community building',
-    'Sales Effectiveness',
+    'Sales effectiveness',
     'Partnerships',
   ],
   [
-    'Comms and Press',
-    'Coaching and Mentoring teams',
-    'Investing and Fundraising',
-    'CEO/CMO Alignment',
+    'Comms & press',
+    'Coaching & mentoring',
+    'Investing & fundraising',
+    'CEO/CMO alignment',
   ],
 ];
 
 const WheelSpaceGrid = styled.div`
   display: grid;
   grid-template-columns: ${WheelSize.base / 2}px auto;
-  gap: 1rem;
+  gap: ${pxToRem(44)};
+  margin-top: ${pxToRem(72)};
 `;
 
 export function AreasOfFocus() {
@@ -34,7 +35,7 @@ export function AreasOfFocus() {
   return (
     <WheelSpaceGrid>
       <div />
-      <Flex direction="column" gap={pxToRem(40)}>
+      <Flex direction="column" gap={{ base: 20, md: 40 }}>
         <Title order={2} size={18}>
           Our focus areas
         </Title>
