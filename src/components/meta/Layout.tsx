@@ -14,7 +14,9 @@ export function Layout({ children, title }: LayoutProps) {
     <>
       <Head title={title} />
       <AppShell header={<NavBar />} padding={0}>
-        <Container maw={BREAKPOINT_VALUES.lg}>{children}</Container>
+        <Container maw={BREAKPOINT_VALUES.lg} p={0}>
+          {children}
+        </Container>
       </AppShell>
     </>
   );
