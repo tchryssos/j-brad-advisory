@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { useMediaQuery } from '@mantine/hooks';
+import throttle from 'lodash.throttle';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
@@ -23,15 +24,18 @@ export function ColorWheel() {
 
   const [rotationDeg, setRotationDeg] = useState(0);
 
+  // TODO - If we notice a performance hit from these re-renders
+  // lets try an on/off scroll that triggers the rotation
+  // see https://www.30secondsofcode.org/js/s/on-scroll-stop
   useEffect(() => {
-    const onScroll = () => {
+    const onScroll = throttle(() => {
       if (globalThis.window.scrollY > scrollTopRef.current) {
         setRotationDeg((prev) => prev + 1);
       } else {
         setRotationDeg((prev) => prev - 1);
       }
       scrollTopRef.current = globalThis.window.scrollY;
-    };
+    }, 16);
     window.onscroll = onScroll;
 
     return () => {
