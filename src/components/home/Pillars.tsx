@@ -1,53 +1,51 @@
 import styled from '@emotion/styled';
 import { Flex, SimpleGrid, Text, Title } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 
-import { BREAKPOINT_VALUES, getMediaQueryMinWidth } from '~/constants/theme';
+import { BREAKPOINT_STRINGS, BREAKPOINT_VALUES } from '~/constants/theme';
+
+import { Image } from '../Image';
 
 const pillarGroups = [
   {
     title: 'Ambitious thinking',
     description:
       'We want to go farther than you think you can, by pushing your  company to the next level.',
+    src: '/ambitious_thinking.png',
   },
   {
     title: 'Clear headed goals',
     description: 'We help everyone get really clear on priorities and goals.',
+    src: '/clear_headed.png',
   },
   {
     title: 'Understood by all',
     description:
       'The plans and strategies we will build need to be understood and used by everyone.',
+    src: '/understood_by_all.png',
   },
   {
     title: 'Executed really well',
     description:
       'We will help you get it done. Nothing really matters unless it is executed.',
+    src: '/understood.png',
   },
 ];
 
-const GridItem = styled(Flex)`
-  border-style: solid;
-  border-color: ${({ theme }) => theme.colors.gray[9]};
-  border-top-width: 1px;
-  border-right-width: 1px;
-  border-left-width: 1px;
-  border-bottom-width: 0;
-  ${getMediaQueryMinWidth('sm')} {
-    &:nth-child(2n) {
-      border-left-width: 0;
-    }
-  }
-  ${getMediaQueryMinWidth('md')} {
-    &:not(:first-child) {
-      border-left-width: 0;
-    }
-  } ;
+const PillarPicture = styled(Image)`
+  border-radius: 20px;
+  overflow: hidden;
 `;
 
 export function Pillars() {
+  const atLeastSm = useMediaQuery(BREAKPOINT_STRINGS.sm);
+  const atLeastMd = useMediaQuery(BREAKPOINT_STRINGS.md);
+
   return (
-    <Flex bg="cyan.0" direction="column" gap={16} mt={48}>
-      <Title order={2}>Our Pillars</Title>
+    <Flex bg="cyan.0" direction="column" gap={40} mt={40} px={16} py={80}>
+      <Title order={2} size={18}>
+        Our Pillars
+      </Title>
       <SimpleGrid
         breakpoints={[
           {
@@ -65,13 +63,26 @@ export function Pillars() {
         ]}
         cols={1}
         p={0}
-        spacing={0}
+        spacing={atLeastSm ? 16 : 40}
       >
         {pillarGroups.map((pillarGroup) => (
-          <GridItem direction="column" gap={20} key={pillarGroup.title} p={16}>
-            <Title order={3}>{pillarGroup.title}</Title>
-            <Text>{pillarGroup.description}</Text>
-          </GridItem>
+          <Flex direction="column" gap={20} key={pillarGroup.title}>
+            <PillarPicture
+              alt=""
+              fill
+              role="presentation"
+              src={pillarGroup.src}
+              style={{
+                objectFit: 'cover',
+              }}
+            />
+            <Flex direction="column" gap={20} h="100%">
+              <Title order={3} size={atLeastMd ? 20 : 18}>
+                {pillarGroup.title}
+              </Title>
+              <Text>{pillarGroup.description}</Text>
+            </Flex>
+          </Flex>
         ))}
       </SimpleGrid>
     </Flex>
