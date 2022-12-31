@@ -2,7 +2,11 @@ import styled from '@emotion/styled';
 import { Flex, SimpleGrid, Text, Title } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 
-import { BREAKPOINT_STRINGS, BREAKPOINT_VALUES } from '~/constants/theme';
+import {
+  BREAKPOINT_STRINGS,
+  BREAKPOINT_VALUES,
+  getMediaQueryMinWidth,
+} from '~/constants/theme';
 
 import { Image } from '../Image';
 
@@ -32,6 +36,14 @@ const pillarGroups = [
   },
 ];
 
+const PillarItem = styled(Flex)`
+  ${getMediaQueryMinWidth('md')} {
+    :nth-child(2n) {
+      padding-top: 100px;
+    }
+  }
+`;
+
 const PillarPicture = styled(Image)`
   border-radius: 20px;
   overflow: hidden;
@@ -42,7 +54,15 @@ export function Pillars() {
   const atLeastMd = useMediaQuery(BREAKPOINT_STRINGS.md);
 
   return (
-    <Flex bg="cyan.0" direction="column" gap={40} mt={40} px={16} py={80}>
+    <Flex
+      bg="cyan.0"
+      direction="column"
+      gap={40}
+      mt={atLeastMd ? 68 : 40}
+      pb={80}
+      pt={atLeastMd ? 154 : 80}
+      px={atLeastMd ? 60 : 16}
+    >
       <Title order={2} size={18}>
         Our Pillars
       </Title>
@@ -66,7 +86,7 @@ export function Pillars() {
         spacing={atLeastSm ? 16 : 40}
       >
         {pillarGroups.map((pillarGroup) => (
-          <Flex direction="column" gap={20} key={pillarGroup.title}>
+          <PillarItem direction="column" gap={20} key={pillarGroup.title}>
             <PillarPicture
               alt=""
               fill
@@ -82,7 +102,7 @@ export function Pillars() {
               </Title>
               <Text>{pillarGroup.description}</Text>
             </Flex>
-          </Flex>
+          </PillarItem>
         ))}
       </SimpleGrid>
     </Flex>

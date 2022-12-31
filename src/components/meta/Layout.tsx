@@ -20,7 +20,7 @@ export function Layout({ children, title }: LayoutProps) {
     <>
       <Head title={title} />
       <AppShell header={<NavBar />} padding={0}>
-        <LayoutContainer maw={BREAKPOINT_VALUES.lg} p={0}>
+        <LayoutContainer maw={BREAKPOINT_VALUES.xl} p={0}>
           {children}
         </LayoutContainer>
       </AppShell>

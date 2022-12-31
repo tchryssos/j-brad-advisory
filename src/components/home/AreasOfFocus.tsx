@@ -35,7 +35,11 @@ const WheelSpaceGrid = styled.div`
 
 // Hacky fake list item to even out lists
 const FakeListItem = styled.div`
-  height: 25px;
+  height: 31px;
+  display: none;
+  ${getMediaQueryMinWidth('md')} {
+    display: block;
+  }
 `;
 
 export function AreasOfFocus() {
@@ -45,7 +49,7 @@ export function AreasOfFocus() {
     <WheelSpaceGrid>
       {/* This empty div creates space for the color wheel */}
       <div />
-      <List listStyleType="none" type="unordered">
+      <List listStyleType="none" pt={{ base: '', md: 40 }} type="unordered">
         <Flex
           direction={atLeastMd ? 'row' : 'column'}
           justify={atLeastMd ? 'space-around' : 'space-between'}
@@ -58,14 +62,22 @@ export function AreasOfFocus() {
               key={focusArea.join('-')}
             >
               {i === 0 && (
-                <Title mb={{ base: 20, md: 40 }} order={2} size={18}>
+                <Title
+                  mb={{ base: 20, md: 40 }}
+                  order={2}
+                  size={atLeastMd ? 21 : 18}
+                >
                   Our focus areas
                 </Title>
               )}
               {focusArea.map((focus) => (
-                <List.Item key={focus}>{focus}</List.Item>
+                <List.Item key={focus}>
+                  <Text size={atLeastMd ? 20 : 14} span>
+                    {focus}
+                  </Text>
+                </List.Item>
               ))}
-              {i === 1 && atLeastMd && <FakeListItem />}
+              {i === 1 && <FakeListItem />}
             </Flex>
           ))}
         </Flex>
