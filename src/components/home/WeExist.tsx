@@ -91,7 +91,13 @@ export function WeExist() {
         <Title fw="bold" order={1} pos="relative" size={atLeastMd ? 72 : 32}>
           We exist to
         </Title>
-        <Text fw="bold" pos="relative" size={atLeastMd ? 72 : 32}>
+        <Text
+          fw="bold"
+          // min-height two lines
+          mih={atLeastMd ? 223 : 100}
+          pos="relative"
+          size={atLeastMd ? 72 : 32}
+        >
           {swappableText[activeTextIndex]}
         </Text>
       </MdContainer>
