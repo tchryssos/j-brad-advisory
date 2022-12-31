@@ -1,44 +1,101 @@
-import styled from '@emotion/styled';
-import { Flex, Group, Title } from '@mantine/core';
+import { Flex, MantineColor, Title } from '@mantine/core';
+import { useMediaQuery } from '@mantine/hooks';
 import Image from 'next/image';
 
-import { pxToRem } from '~/logic/util/styles';
+import { BREAKPOINT_STRINGS } from '~/constants/theme';
 
-const companyLogos = [
+type LogoObj = {
+  src: string;
+  alt: string;
+};
+
+const workedForLogos: LogoObj[] = [
   {
-    src: '/sofi.png',
+    src: '/logos/sofi.png',
     alt: 'Sofi',
+  },
+  {
+    src: '/logos/paypal.png',
+    alt: 'PayPal',
+  },
+  {
+    src: '/logos/microsoft.png',
+    alt: 'Microsoft',
+  },
+  {
+    src: '/logos/honey.png',
+    alt: 'honey',
   },
 ];
 
-const WorkedSection = styled(Flex)`
-  border-top: 1px solid ${({ theme }) => theme.colors.gray[9]};
-`;
+const workedWithLogos: LogoObj[] = [
+  {
+    src: '/logos/variant.png',
+    alt: 'Variant3D',
+  },
+  {
+    src: '/logos/enkasa.png',
+    alt: 'Enkasa',
+  },
+  {
+    src: '/logos/diamond.png',
+    alt: 'Diamond',
+  },
+  {
+    src: '/logos/findkeep.png',
+    alt: 'FindKeepLove',
+  },
+];
+
+interface WorkedBlockProps {
+  color: MantineColor;
+  logos: LogoObj[];
+  title: string;
+}
+
+function WorkedBlock({ color, logos, title }: WorkedBlockProps) {
+  const atLeastMd = useMediaQuery(BREAKPOINT_STRINGS.md);
+
+  return (
+    <Flex
+      align="center"
+      bg={color}
+      direction="column"
+      justify="center"
+      py={40}
+      w="100%"
+    >
+      <Title color="gray.0" mb={40} order={2} size={atLeastMd ? 20 : 18}>
+        {title}
+      </Title>
+      <Flex direction={atLeastMd ? 'row' : 'column'}>
+        {logos.map((logo) => (
+          <Image
+            alt={logo.alt}
+            height={100}
+            key={logo.src}
+            src={logo.src}
+            width={200}
+          />
+        ))}
+      </Flex>
+    </Flex>
+  );
+}
 
 export function WorkedWith() {
   return (
-    <WorkedSection
-      align="center"
-      bg="gray.4"
-      direction="column"
-      gap={pxToRem(32)}
-      justify="center"
-      mih={pxToRem(266)}
-    >
-      <Title order={2}>Companies We&apos;ve Worked With</Title>
-      <Group pos="relative" position="center">
-        {companyLogos.map((logo) => (
-          <Flex h={pxToRem(88)} key={logo.src} w={pxToRem(104)}>
-            <Image
-              alt={logo.alt}
-              fill
-              key={logo.src}
-              src={logo.src}
-              style={{ objectFit: 'contain' }}
-            />
-          </Flex>
-        ))}
-      </Group>
-    </WorkedSection>
+    <>
+      <WorkedBlock
+        color="blue.6"
+        logos={workedForLogos}
+        title="Brands we've worked at"
+      />
+      <WorkedBlock
+        color="purple.8"
+        logos={workedWithLogos}
+        title="Brands we work with"
+      />
+    </>
   );
 }
