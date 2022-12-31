@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Flex, Grid, List, Title } from '@mantine/core';
+import { Flex, List, Title } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 
 import { WheelSize } from '~/constants/images';
@@ -34,6 +34,7 @@ export function AreasOfFocus() {
 
   return (
     <WheelSpaceGrid>
+      {/* This empty div creates space for the color wheel */}
       <div />
       <Flex direction="column" gap={{ base: 20, md: 40 }}>
         <Title order={2} size={18}>

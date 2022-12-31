@@ -46,7 +46,7 @@ const GridItem = styled(Flex)`
 
 export function Pillars() {
   return (
-    <Flex direction="column" gap={16} mt={48}>
+    <Flex bg="cyan.0" direction="column" gap={16} mt={48}>
       <Title order={2}>Our Pillars</Title>
       <SimpleGrid
         breakpoints={[
