@@ -63,7 +63,7 @@ export function Pillars() {
       pt={atLeastMd ? 154 : 80}
       px={atLeastMd ? 60 : 16}
     >
-      <Title order={2} size={18}>
+      <Title order={2} size={atLeastMd ? 21 : 18}>
         Our Pillars
       </Title>
       <SimpleGrid
