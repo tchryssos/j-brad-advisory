@@ -12,18 +12,31 @@ interface LinkProps {
   className?: string;
 }
 
-const StyledLink = styled.a<{ isActive: boolean }>`
+interface StyledProps {
+  isActive: boolean;
+}
+
+const StyledLink = styled.a<StyledProps>`
   color: ${({ theme }) => theme.colors.gray[9]};
   text-decoration: none;
   font-size: ${pxToRem(20)};
-`;
-
-const ActiveBar = styled.div`
-  height: 1px;
-  width: 95%;
-  background-color: ${({ theme }) => theme.colors.gray[9]};
-  position: absolute;
-  bottom: -4px;
+  position: relative;
+  ::after {
+    content: '';
+    display: ${({ isActive }) => (isActive ? 'block' : 'none')};
+    height: 1px;
+    width: 100%;
+    background-color: ${({ theme }) => theme.colors.gray[9]};
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+  }
+  :hover {
+    color: ${({ theme }) => theme.colors.blue[6]};
+    ::after {
+      background-color: ${({ theme }) => theme.colors.blue[6]};
+    }
+  }
 `;
 
 export function Link({
@@ -47,7 +60,6 @@ export function Link({
           {children}
         </StyledLink>
       </NextLink>
-      {isActive && <ActiveBar />}
     </Flex>
   );
 }
