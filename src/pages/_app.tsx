@@ -21,6 +21,7 @@ function Page({ Component, pageProps }: AppProps) {
         theme={{
           colorScheme,
           colors: CUSTOM_THEME_COLORS,
+          fontFamily: 'Poppins, sans-serif',
           breakpoints: {
             xs: BREAKPOINT_VALUES.xs,
             sm: BREAKPOINT_VALUES.sm,
@@ -28,6 +29,7 @@ function Page({ Component, pageProps }: AppProps) {
             lg: BREAKPOINT_VALUES.lg,
             xl: BREAKPOINT_VALUES.xl,
           },
+          headings: { fontFamily: 'Poppins, sans-serif' },
         }}
         withGlobalStyles
         withNormalizeCSS
