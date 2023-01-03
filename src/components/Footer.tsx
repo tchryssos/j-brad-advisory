@@ -34,6 +34,7 @@ export function Footer() {
     <FooterWrapper
       align="flex-end"
       bg="purple.8"
+      m={0}
       px={{ base: 16, md: 60 }}
       py={{ base: 40, md: 60 }}
     >

@@ -25,6 +25,12 @@ function Page({ Component, pageProps }: AppProps) {
               m: 0,
             },
           },
+          Grid: {
+            defaultProps: {
+              p: 0,
+              m: 0,
+            },
+          },
         },
       }}
       withGlobalStyles

@@ -22,6 +22,8 @@ export function Layout({ children, title }: LayoutProps) {
     <>
       <Head title={title} />
       <AppShell
+        // https://mantine.dev/core/app-shell/#static-position
+        fixed={false}
         footer={<Footer />}
         header={
           // If you notice some weird scrolling with the body / header
