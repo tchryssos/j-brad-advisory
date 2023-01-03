@@ -4,26 +4,37 @@ import { Flex, Paper, Text, Title } from '@mantine/core';
 import { Image } from '~/components/Image';
 import { Layout } from '~/components/meta/Layout';
 
-// const BgImage = styled(Image)`
-//   height: 100%;
-//   width: 100%;
-//   position: absolute;
-// `;
+const BgImage = styled(Image)`
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+`;
 
 const AboutWrapper = styled.div`
   height: 100%;
   width: 100%;
-  background-image: url('/about.png');
-  background-size: cover;
-  background-position: center;
   display: flex;
   justify-content: center;
+  position: relative;
 `;
 
 function About() {
   return (
     <Layout title="About - J. Bradford Advisory">
       <AboutWrapper>
+        <BgImage
+          alt=""
+          fill
+          role="presentation"
+          src="/about.png"
+          style={{
+            objectFit: 'cover',
+          }}
+        />
         <Paper
           h="fit-content"
           m={{ base: 20, md: 40 }}
