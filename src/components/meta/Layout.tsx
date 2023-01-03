@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
-import { AppShell, Container } from '@mantine/core';
+import { AppShell, Container, Header } from '@mantine/core';
 
+import { NAV_HEIGHTS } from '~/constants/nav';
 import { BREAKPOINT_VALUES } from '~/constants/theme';
 
 import { NavBar } from '../NavBar';
@@ -19,8 +20,17 @@ export function Layout({ children, title }: LayoutProps) {
   return (
     <>
       <Head title={title} />
-      <AppShell header={<NavBar />} padding={0}>
-        <LayoutContainer maw={BREAKPOINT_VALUES.xl} p={0}>
+      <AppShell
+        header={
+          // If you notice some weird scrolling with the body / header
+          // its probably because NAV_HEIGHTS need to be changed
+          <Header height={{ ...NAV_HEIGHTS }}>
+            <NavBar />
+          </Header>
+        }
+        padding={0}
+      >
+        <LayoutContainer h="100%" maw={BREAKPOINT_VALUES.xl} p={0}>
           {children}
         </LayoutContainer>
       </AppShell>

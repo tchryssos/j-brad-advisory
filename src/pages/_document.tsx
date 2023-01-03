@@ -1,4 +1,9 @@
+import styled from '@emotion/styled';
 import { Head, Html, Main, NextScript } from 'next/document';
+
+const Body = styled.body`
+  overscroll-behavior: none;
+`;
 
 export default function Document() {
   return (
@@ -9,10 +14,10 @@ export default function Document() {
           rel="stylesheet"
         />
       </Head>
-      <body>
+      <Body>
         <Main />
         <NextScript />
-      </body>
+      </Body>
     </Html>
   );
 }
