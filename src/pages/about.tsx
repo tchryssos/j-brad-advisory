@@ -4,16 +4,18 @@ import { Flex, Paper, Text, Title } from '@mantine/core';
 import { Image } from '~/components/Image';
 import { Layout } from '~/components/meta/Layout';
 
-const BgImage = styled(Image)`
-  height: 100%;
-  width: 100%;
-  position: absolute;
-`;
+// const BgImage = styled(Image)`
+//   height: 100%;
+//   width: 100%;
+//   position: absolute;
+// `;
 
 const AboutWrapper = styled.div`
   height: 100%;
   width: 100%;
-  background-color: red;
+  background-image: url('/about.png');
+  background-size: cover;
+  background-position: center;
   display: flex;
   justify-content: center;
 `;
