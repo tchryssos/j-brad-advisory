@@ -31,7 +31,8 @@ const StyledLink = styled.a<StyledProps>`
     bottom: -4px;
     left: 0;
   }
-  :hover {
+  :hover,
+  :active {
     color: ${({ theme }) => theme.colors.blue[6]};
     ::after {
       background-color: ${({ theme }) => theme.colors.blue[6]};

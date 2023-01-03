@@ -4,6 +4,7 @@ import { AppShell, Container, Header } from '@mantine/core';
 import { NAV_HEIGHTS } from '~/constants/nav';
 import { BREAKPOINT_VALUES } from '~/constants/theme';
 
+import { Footer } from '../Footer';
 import { NavBar } from '../NavBar';
 import { Head } from './Head';
 
@@ -21,6 +22,7 @@ export function Layout({ children, title }: LayoutProps) {
     <>
       <Head title={title} />
       <AppShell
+        footer={<Footer />}
         header={
           // If you notice some weird scrolling with the body / header
           // its probably because NAV_HEIGHTS need to be changed

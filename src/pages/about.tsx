@@ -4,6 +4,7 @@ import { Flex, Paper, Text, Title } from '@mantine/core';
 import { Image } from '~/components/Image';
 import { Link } from '~/components/Link';
 import { Layout } from '~/components/meta/Layout';
+import { LINKEDIN_LINK } from '~/constants/links';
 import { getMediaQueryMinWidth } from '~/constants/theme';
 import { pxToRem } from '~/logic/util/styles';
 
@@ -58,7 +59,7 @@ function About() {
             <Title order={1} size={32}>
               About Joanne Bradford
             </Title>
-            <Link href="https://www.linkedin.com/in/joanne-bradford-9a588022/">
+            <Link href={LINKEDIN_LINK}>
               <Text size={21}>Linkedin</Text>
             </Link>
           </Flex>
