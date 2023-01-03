@@ -2,7 +2,10 @@ import styled from '@emotion/styled';
 import { Flex, Paper, Text, Title } from '@mantine/core';
 
 import { Image } from '~/components/Image';
+import { Link } from '~/components/Link';
 import { Layout } from '~/components/meta/Layout';
+import { getMediaQueryMinWidth } from '~/constants/theme';
+import { pxToRem } from '~/logic/util/styles';
 
 const BgImage = styled(Image)`
   height: 100%;
@@ -20,6 +23,10 @@ const AboutWrapper = styled.div`
   display: flex;
   justify-content: center;
   position: relative;
+  font-size: 1rem;
+  ${getMediaQueryMinWidth('md')} {
+    font-size: ${pxToRem(18)};
+  }
 `;
 
 function About() {
@@ -43,9 +50,20 @@ function About() {
           radius={16}
           w="100%"
         >
-          <Title order={1}>About Joanne Bradford</Title>
-          <Flex direction="column" gap={16}>
-            <Text>
+          <Flex
+            direction={{ base: 'column', md: 'row' }}
+            gap={20}
+            justify={{ base: 'flex-start', md: 'space-between' }}
+          >
+            <Title order={1} size={32}>
+              About Joanne Bradford
+            </Title>
+            <Link href="https://www.linkedin.com/in/joanne-bradford-9a588022/">
+              <Text size={21}>Linkedin</Text>
+            </Link>
+          </Flex>
+          <Flex direction="column" gap={16} mt={20}>
+            <Text component="p">
               Experienced Operating Executive and independent board member with
               a demonstrated track record in technology, media and financial
               services. Expert DTC/B2B product marketer and revenue leader,

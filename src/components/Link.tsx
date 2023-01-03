@@ -49,7 +49,7 @@ export function Link({
   const isActive = router.asPath === href;
 
   return (
-    <Flex align="center" direction="column">
+    <Flex align="center" direction="column" w="fit-content">
       <NextLink href={href} legacyBehavior passHref>
         <StyledLink
           className={className}

@@ -30,6 +30,15 @@ function Page({ Component, pageProps }: AppProps) {
             xl: BREAKPOINT_VALUES.xl,
           },
           headings: { fontFamily: 'Poppins, sans-serif' },
+          components: {
+            Text: {
+              defaultProps: {
+                component: 'p',
+                p: 0,
+                m: 0,
+              },
+            },
+          },
         }}
         withGlobalStyles
         withNormalizeCSS
