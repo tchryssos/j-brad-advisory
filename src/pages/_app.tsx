@@ -31,6 +31,11 @@ function Page({ Component, pageProps }: AppProps) {
               m: 0,
             },
           },
+          Title: {
+            defaultProps: {
+              fw: 600,
+            },
+          },
         },
       }}
       withGlobalStyles
