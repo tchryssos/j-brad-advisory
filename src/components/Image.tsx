@@ -3,7 +3,9 @@ import NextImage, { ImageProps as NextImageProps } from 'next/image';
 
 import { pxToRem } from '~/logic/util/styles';
 
-interface ImageProps extends NextImageProps {}
+interface ImageProps extends NextImageProps {
+  minHeight?: number;
+}
 
 function WrappedImage({ className, ...rest }: ImageProps) {
   return (
@@ -14,9 +16,9 @@ function WrappedImage({ className, ...rest }: ImageProps) {
   );
 }
 
-export const Image = styled(WrappedImage)`
+export const Image = styled(WrappedImage)<ImageProps>`
   width: 100%;
-  min-height: ${pxToRem(208)};
+  min-height: ${({ minHeight }) => pxToRem(minHeight || 0)};
   position: relative;
   display: block;
 `;

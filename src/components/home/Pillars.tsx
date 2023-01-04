@@ -90,6 +90,7 @@ export function Pillars() {
             <PillarPicture
               alt=""
               fill
+              minHeight={208}
               role="presentation"
               src={pillarGroup.src}
               style={{

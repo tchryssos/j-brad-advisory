@@ -2,6 +2,7 @@ import { Flex } from '@mantine/core';
 
 import { ColorWheel } from '~/components/ColorWheel';
 import { AreasOfFocus } from '~/components/home/AreasOfFocus';
+import { HowWeWork } from '~/components/home/HowWeWork';
 import { Pillars } from '~/components/home/Pillars';
 import { WeExist } from '~/components/home/WeExist';
 import { WorkedWith } from '~/components/home/WorkedWith';
@@ -17,6 +18,7 @@ function Home() {
         <Pillars />
       </Flex>
       <WorkedWith />
+      <HowWeWork />
     </Layout>
   );
 }
