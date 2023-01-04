@@ -19,7 +19,7 @@ const SvgWrapper = styled(SvgBase)`
   width: fit-content;
   height: ${pxToRem(26)};
   ${getMediaQueryMinWidth('md')} {
-    height: ${pxToRem(50)};
+    height: ${pxToRem(40)};
   }
 `;
 

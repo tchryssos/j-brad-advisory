@@ -9,10 +9,10 @@ import { pxToRem } from '~/logic/util/styles';
 import { Link } from '../Link';
 
 const ContactLink = styled.a`
-  font-size: ${pxToRem(20)};
+  font-size: ${pxToRem(16)};
   border: 2px solid ${({ theme }) => theme.colors.gray[9]};
   border-radius: 500px;
-  padding: ${pxToRem(8)} ${pxToRem(16)};
+  padding: ${pxToRem(4)} ${pxToRem(16)};
   text-decoration: none;
   color: ${({ theme }) => theme.colors.gray[9]};
   :hover,

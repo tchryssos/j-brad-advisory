@@ -11,5 +11,5 @@
  */
 export const NAV_HEIGHTS = {
   base: 63,
-  md: 83,
+  md: 72,
 };

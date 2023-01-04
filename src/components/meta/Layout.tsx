@@ -17,6 +17,10 @@ const LayoutContainer = styled(Container)`
   overflow: hidden;
 `;
 
+const ShadowlessHeader = styled(Header)`
+  border: none;
+`;
+
 export function Layout({ children, title }: LayoutProps) {
   return (
     <>
@@ -28,9 +32,9 @@ export function Layout({ children, title }: LayoutProps) {
         header={
           // If you notice some weird scrolling with the body / header
           // its probably because NAV_HEIGHTS need to be changed
-          <Header height={{ ...NAV_HEIGHTS }}>
+          <ShadowlessHeader height={{ ...NAV_HEIGHTS }}>
             <NavBar />
-          </Header>
+          </ShadowlessHeader>
         }
         padding={0}
       >

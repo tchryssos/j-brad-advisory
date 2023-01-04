@@ -19,7 +19,7 @@ interface StyledProps {
 const StyledLink = styled.a<StyledProps>`
   color: ${({ theme }) => theme.colors.gray[9]};
   text-decoration: none;
-  font-size: ${pxToRem(20)};
+  font-size: ${pxToRem(16)};
   position: relative;
   ::after {
     content: '';
