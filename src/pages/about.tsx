@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { Flex, Paper, Text, Title } from '@mantine/core';
 
+import { ArrowIcon } from '~/components/ArrowIcon';
 import { Image } from '~/components/Image';
 import { Link } from '~/components/Link';
 import { Layout } from '~/components/meta/Layout';
@@ -30,6 +31,12 @@ const AboutWrapper = styled.div`
   }
 `;
 
+const AboutLink = styled(Link)`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+`;
+
 function About() {
   return (
     <Layout title="About - J. Bradford Advisory">
@@ -46,6 +53,7 @@ function About() {
         <Paper
           h="fit-content"
           m={{ base: 20, md: 40 }}
+          maw={872}
           p={{ base: 20, md: 40 }}
           pos="relative"
           radius={16}
@@ -59,9 +67,10 @@ function About() {
             <Title order={1} size={32}>
               About Joanne Bradford
             </Title>
-            <Link href={LINKEDIN_LINK}>
+            <AboutLink href={LINKEDIN_LINK}>
               <Text size={21}>Linkedin</Text>
-            </Link>
+              <ArrowIcon />
+            </AboutLink>
           </Flex>
           <Flex direction="column" gap={16} mt={20}>
             <Text component="p">

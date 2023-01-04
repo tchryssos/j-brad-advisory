@@ -18,6 +18,7 @@ interface StyledProps {
 
 const StyledLink = styled.a<StyledProps>`
   color: ${({ theme }) => theme.colors.gray[9]};
+  stroke: ${({ theme }) => theme.colors.gray[9]};
   text-decoration: none;
   font-size: ${pxToRem(16)};
   position: relative;
@@ -34,6 +35,7 @@ const StyledLink = styled.a<StyledProps>`
   :hover,
   :active {
     color: ${({ theme }) => theme.colors.blue[6]};
+    stroke: ${({ theme }) => theme.colors.blue[6]};
     ::after {
       background-color: ${({ theme }) => theme.colors.blue[6]};
     }

@@ -38,7 +38,7 @@ export function Footer() {
       px={{ base: 16, md: 60 }}
       py={{ base: 40, md: 60 }}
     >
-      <Grid.Col md={6} order={1} orderMd={2} p={0}>
+      <Grid.Col md={5} order={1} orderMd={2} p={0}>
         <Flex direction="column" gap={20}>
           <Text size={atLeastMd ? 20 : 18}>
             If you need help on a project, a strategic plan or a team...
@@ -53,7 +53,7 @@ export function Footer() {
           </Flex>
         </Flex>
       </Grid.Col>
-      <Grid.Col md={6} mt={{ base: 100, md: 0 }} order={2} orderMd={1} p={0}>
+      <Grid.Col md={7} mt={{ base: 100, md: 0 }} order={2} orderMd={1} p={0}>
         <Logo fill="white" />
       </Grid.Col>
     </FooterWrapper>
