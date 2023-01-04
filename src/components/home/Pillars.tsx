@@ -36,10 +36,13 @@ const pillarGroups = [
   },
 ];
 
-const PillarItem = styled(Flex)`
+const PillarItem = styled.div`
+  display: grid;
+  gap: 20px;
+  grid-template-rows: auto 1fr;
   ${getMediaQueryMinWidth('md')} {
     :nth-child(2n) {
-      padding-top: 100px;
+      margin-top: 100px;
     }
   }
 `;
@@ -47,6 +50,7 @@ const PillarItem = styled(Flex)`
 const PillarPicture = styled(Image)`
   border-radius: 20px;
   overflow: hidden;
+  aspect-ratio: 1.5;
 `;
 
 export function Pillars() {
@@ -86,11 +90,10 @@ export function Pillars() {
         spacing={atLeastSm ? 16 : 40}
       >
         {pillarGroups.map((pillarGroup) => (
-          <PillarItem direction="column" gap={20} key={pillarGroup.title}>
+          <PillarItem key={pillarGroup.title}>
             <PillarPicture
               alt=""
               fill
-              minHeight={208}
               role="presentation"
               src={pillarGroup.src}
               style={{
