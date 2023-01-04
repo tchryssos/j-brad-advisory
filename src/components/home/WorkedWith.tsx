@@ -1,4 +1,4 @@
-import { Flex, MantineColor, Title } from '@mantine/core';
+import { Flex, Title } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 import Image from 'next/image';
 
@@ -48,21 +48,22 @@ const workedWithLogos: LogoObj[] = [
 ];
 
 interface WorkedBlockProps {
-  color: MantineColor;
   logos: LogoObj[];
   title: string;
+  i: number;
 }
 
-function WorkedBlock({ color, logos, title }: WorkedBlockProps) {
+function WorkedBlock({ logos, title, i }: WorkedBlockProps) {
   const atLeastMd = useMediaQuery(BREAKPOINT_STRINGS.md);
 
   return (
     <Flex
       align="center"
-      bg={color}
+      bg="purple.8"
       direction="column"
       justify="center"
-      py={40}
+      pb={40}
+      pt={i === 1 ? 0 : 40}
       w="100%"
     >
       <Title color="gray.0" mb={40} order={2} size={atLeastMd ? 20 : 18}>
@@ -87,15 +88,11 @@ export function WorkedWith() {
   return (
     <>
       <WorkedBlock
-        color="blue.6"
+        i={0}
         logos={workedForLogos}
         title="Brands we've worked at"
       />
-      <WorkedBlock
-        color="purple.8"
-        logos={workedWithLogos}
-        title="Brands we work with"
-      />
+      <WorkedBlock i={1} logos={workedWithLogos} title="Brands we work with" />
     </>
   );
 }

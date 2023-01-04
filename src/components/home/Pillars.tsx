@@ -61,14 +61,14 @@ export function Pillars() {
     <Flex
       bg="cyan.0"
       direction="column"
-      gap={40}
+      gap={20}
       mt={atLeastMd ? 68 : 40}
       pb={80}
       pt={atLeastMd ? 154 : 80}
       px={atLeastMd ? 60 : 16}
     >
       <Title order={2} size={atLeastMd ? 21 : 18}>
-        Our Pillars
+        Our pillars
       </Title>
       <SimpleGrid
         breakpoints={[

@@ -43,7 +43,7 @@ const FakeListItem = styled.div`
 `;
 
 export function AreasOfFocus() {
-  const atLeastMd = useMediaQuery(BREAKPOINT_STRINGS.md);
+  const atLeastSm = useMediaQuery(BREAKPOINT_STRINGS.sm);
 
   return (
     <WheelSpaceGrid>
@@ -51,8 +51,8 @@ export function AreasOfFocus() {
       <div />
       <List listStyleType="none" pt={{ base: '', md: 40 }} type="unordered">
         <Flex
-          direction={atLeastMd ? 'row' : 'column'}
-          justify={atLeastMd ? 'space-around' : 'space-between'}
+          direction={atLeastSm ? 'row' : 'column'}
+          justify={atLeastSm ? 'space-around' : 'space-between'}
           maw={712}
         >
           {focusAreas.map((focusArea, i) => (
@@ -62,17 +62,13 @@ export function AreasOfFocus() {
               key={focusArea.join('-')}
             >
               {i === 0 && (
-                <Title
-                  mb={{ base: 20, md: 40 }}
-                  order={2}
-                  size={atLeastMd ? 21 : 18}
-                >
+                <Title mb={20} order={2} size={atLeastSm ? 21 : 18}>
                   Our focus areas
                 </Title>
               )}
               {focusArea.map((focus) => (
                 <List.Item key={focus}>
-                  <Text size={atLeastMd ? 20 : 14} span>
+                  <Text component="span" lh="200%" size={atLeastSm ? 20 : 14}>
                     {focus}
                   </Text>
                 </List.Item>

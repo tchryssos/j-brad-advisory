@@ -1,8 +1,12 @@
+import styled from '@emotion/styled';
 import { Flex, SimpleGrid, Text, Title } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
-import NextImage from 'next/image';
 
-import { BREAKPOINT_STRINGS, BREAKPOINT_VALUES } from '~/constants/theme';
+import {
+  BREAKPOINT_STRINGS,
+  BREAKPOINT_VALUES,
+  getMediaQueryMinWidth,
+} from '~/constants/theme';
 
 import { Image } from '../Image';
 
@@ -15,6 +19,21 @@ const hFontSize = {
   base: 18,
   md: 32,
 };
+
+const HowWeWorkGrid = styled.div`
+  display: grid;
+  gap: 110px;
+  grid-template-columns: 1fr;
+  background-color: ${({ theme }) => theme.colors.blue[6]};
+  padding: 0 20px;
+  gap: 20px;
+  color: ${({ theme }) => theme.colors.gray[0]};
+  ${getMediaQueryMinWidth('md')} {
+    grid-template-columns: 1fr 1fr;
+    gap: 110px;
+    padding: 80px 60px;
+  }
+`;
 
 export function HowWeWork() {
   const atLeastMd = useMediaQuery(BREAKPOINT_STRINGS.md);
@@ -33,7 +52,7 @@ export function HowWeWork() {
       <SimpleGrid
         breakpoints={[{ minWidth: BREAKPOINT_VALUES.md, spacing: 20, cols: 2 }]}
         cols={1}
-        my={{ base: 86, md: 100 }}
+        my={{ base: 86, md: 80 }}
         px={{ base: 20, md: 60 }}
         spacing={40}
       >
@@ -54,15 +73,10 @@ export function HowWeWork() {
           </Text>
         </Flex>
       </SimpleGrid>
-      <Flex
-        direction={{ base: 'column-reverse', md: 'row' }}
-        gap={{ base: 110, md: 100 }}
-        mb={{ base: 50, md: 228 }}
-        px={{ base: 20, md: 60 }}
-      >
+      <HowWeWorkGrid>
         <Flex direction="column" gap={30}>
           <Title order={2} size={atLeastMd ? hFontSize.md : hFontSize.base}>
-            How We Work
+            How we work
           </Title>
           <Text size={atLeastMd ? pFontSize.md : pFontSize.base}>
             You can hire us for a few hours or a few months to help get the
@@ -87,16 +101,18 @@ export function HowWeWork() {
             agencies engaged and perform better.
           </Text>
         </Flex>
-        <Flex justify={{ base: 'center', md: 'flex-end' }} w="100%">
-          <NextImage
+        <Flex h="100%" justify={{ base: 'center', md: 'flex-end' }}>
+          <Image
             alt=""
-            height={atLeastMd ? 532 : 224}
+            fill
             role="presentation"
             src="/eclipse.png"
-            width={atLeastMd ? 532 : 224}
+            style={{
+              objectFit: 'contain',
+            }}
           />
         </Flex>
-      </Flex>
+      </HowWeWorkGrid>
     </>
   );
 }
