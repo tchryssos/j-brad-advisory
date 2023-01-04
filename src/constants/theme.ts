@@ -174,3 +174,5 @@ export const PROJECT_COLORS = {
   white: '#FFF',
   black: '#000',
 };
+
+export const CONTAINER_WIDTH = BREAKPOINT_VALUES.xl;

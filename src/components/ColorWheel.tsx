@@ -30,9 +30,9 @@ export function ColorWheel() {
   useEffect(() => {
     const onScroll = throttle(() => {
       if (globalThis.window.scrollY > scrollTopRef.current) {
-        setRotationDeg((prev) => prev + 1);
+        setRotationDeg((prev) => prev + 0.5);
       } else {
-        setRotationDeg((prev) => prev - 1);
+        setRotationDeg((prev) => prev - 0.5);
       }
       scrollTopRef.current = globalThis.window.scrollY;
     }, 16);

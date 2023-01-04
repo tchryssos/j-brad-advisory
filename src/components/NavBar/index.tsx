@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Flex } from '@mantine/core';
 
-import { BREAKPOINT_VALUES } from '~/constants/theme';
+import { CONTAINER_WIDTH } from '~/constants/theme';
 
 import { Logo } from '../Logo';
 import { BaseMenu } from './BaseMenu';
@@ -19,7 +19,7 @@ export function NavBar() {
       <Flex
         align="center"
         justify="space-between"
-        maw={BREAKPOINT_VALUES.lg}
+        maw={CONTAINER_WIDTH}
         p={16}
         w="100%"
       >
