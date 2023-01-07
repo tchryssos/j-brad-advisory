@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { getMediaQueryMinWidth } from '~/constants/theme';
 import { pxToRem } from '~/logic/util/styles';
 
-import { SvgBase } from './SvgBase';
+import { SvgBase } from './icons/SvgBase';
 
 interface LogoProps {
   className?: string;

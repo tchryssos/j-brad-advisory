@@ -18,7 +18,7 @@ const Path = styled.path`
 
 const SvgWrapper = styled(SvgBase)`
   width: fit-content;
-  height: ${pxToRem(10)};
+  height: ${pxToRem(12)};
 `;
 
 export function ArrowIcon({ className }: LogoProps) {

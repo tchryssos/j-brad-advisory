@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Flex, Paper, Text, Title } from '@mantine/core';
 
-import { ArrowIcon } from '~/components/ArrowIcon';
+import { ArrowIcon } from '~/components/icons/ArrowIcon';
 import { Image } from '~/components/Image';
 import { Link } from '~/components/Link';
 import { Layout } from '~/components/meta/Layout';
@@ -34,7 +34,7 @@ const AboutWrapper = styled.div`
 const AboutLink = styled(Link)`
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
 `;
 
 function About() {
@@ -67,7 +67,7 @@ function About() {
             <Title order={1} size={32}>
               About Joanne Bradford
             </Title>
-            <AboutLink href={LINKEDIN_LINK}>
+            <AboutLink href={LINKEDIN_LINK} isInternal={false}>
               <Text size={21}>Linkedin</Text>
               <ArrowIcon />
             </AboutLink>

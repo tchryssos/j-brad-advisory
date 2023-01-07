@@ -1,42 +1,103 @@
 import styled from '@emotion/styled';
-import { Burger, Button, Menu } from '@mantine/core';
+import { ActionIcon, Flex } from '@mantine/core';
+import { useScrollLock } from '@mantine/hooks';
 import Link from 'next/link';
 import { useState } from 'react';
 
 import { ABOUT_ROUTE, HOME_ROUTE } from '~/constants/routing';
 import { getMediaQueryMinWidth } from '~/constants/theme';
+import { pxToRem } from '~/logic/util/styles';
 
-const BaseMenuComponent = styled(Menu)`
+import { CloseIcon } from '../icons/CloseIcon';
+import { HamburgerIcon } from '../icons/Hamburger';
+import { ContactLink } from './ContactLink';
+
+const BaseMenuComponent = styled(Flex)`
   display: block;
   ${getMediaQueryMinWidth('md')} {
     display: none;
   }
 `;
 
+const FullWrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: ${({ theme }) => theme.colors.cyan[0]};
+  z-index: 100;
+`;
+
+const Menu = styled.ul`
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10%;
+  height: 100%;
+`;
+
+const MenuItem = styled.li`
+  padding: 0;
+  margin: 0;
+`;
+
+// For some reason ActionIcon doesn't agree with styled and ts
+// so we just need to redfine the important props here
+const CloseButton = styled(ActionIcon)<{
+  children: React.ReactNode;
+  onClick: () => void;
+}>`
+  position: absolute;
+  top: ${pxToRem(16)};
+  right: ${pxToRem(16)};
+`;
+
+const menuId = 'base-menu-id';
+const menuButtonId = 'base-menu-button-id';
+
 export function BaseMenu() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const [isScrollLocked, setScrollLocked] = useScrollLock();
+
+  const onToggle = () => {
+    setIsOpen(!isOpen);
+    setScrollLocked(!isScrollLocked);
+  };
+
   return (
-    <BaseMenuComponent position="left-start" shadow="md">
-      <Menu.Target>
-        <Burger
-          aria-label="Open Navigation"
-          opened={isOpen}
-          size={24}
-          title="Open Navigation"
-          onClick={() => setIsOpen(!isOpen)}
-        />
-      </Menu.Target>
-      <Menu.Dropdown>
-        <Menu.Item>
-          <Link href={HOME_ROUTE}>Home</Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Link href={ABOUT_ROUTE}>About</Link>
-        </Menu.Item>
-        <Menu.Item>
-          <Button>Contact Us</Button>
-        </Menu.Item>
-      </Menu.Dropdown>
+    <BaseMenuComponent>
+      <ActionIcon
+        aria-controls={menuId}
+        aria-expanded={isOpen}
+        id={menuButtonId}
+        onClick={onToggle}
+      >
+        <HamburgerIcon />
+      </ActionIcon>
+      <FullWrapper hidden={!isOpen} id={menuId}>
+        <CloseButton aria-controls={menuId} onClick={onToggle}>
+          <CloseIcon />
+        </CloseButton>
+        <Menu>
+          <MenuItem>
+            <Link href={HOME_ROUTE}>Home</Link>
+          </MenuItem>
+          <MenuItem>
+            <Link href={ABOUT_ROUTE}>About</Link>
+          </MenuItem>
+          <MenuItem>
+            <ContactLink />
+          </MenuItem>
+        </Menu>
+      </FullWrapper>
     </BaseMenuComponent>
   );
 }
