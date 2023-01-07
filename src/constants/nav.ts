@@ -10,6 +10,6 @@
  * See https://github.com/mantinedev/mantine/discussions/399#discussioncomment-1617195
  */
 export const NAV_HEIGHTS = {
-  base: 63,
+  base: 66,
   md: 72,
 };
