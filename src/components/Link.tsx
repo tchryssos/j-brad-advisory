@@ -12,6 +12,7 @@ interface LinkProps {
   className?: string;
   fontSize?: number;
   activeUnderline?: boolean;
+  title?: string;
 }
 
 interface StyledProps extends Pick<LinkProps, 'activeUnderline' | 'fontSize'> {
@@ -52,6 +53,7 @@ export function Link({
   className,
   fontSize,
   activeUnderline,
+  title,
 }: LinkProps) {
   const router = useRouter();
   const isActive = router.asPath === href;
@@ -66,6 +68,7 @@ export function Link({
           isActive={isActive}
           rel="noopener noreferrer"
           target={isInternal ? '_self' : '_blank'}
+          title={title}
         >
           {children}
         </StyledLink>

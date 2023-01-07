@@ -51,11 +51,8 @@ const MenuItem = styled.li`
 
 // For some reason ActionIcon doesn't agree with styled and ts
 // (probably because its polymorphic)
-// so we just need to redfine some important props below
+// so we just need to redefine some important props below
 const IconButton = styled(ActionIcon)`
-  position: absolute;
-  top: ${pxToRem(16)};
-  right: ${pxToRem(16)};
   stroke: ${({ theme }) => theme.colors.gray[9]};
   :hover,
   :active {
@@ -65,6 +62,12 @@ const IconButton = styled(ActionIcon)`
 ` as React.ComponentType<
   ActionIconProps & { onClick: () => void; id?: string }
 >;
+
+const InnerIconButton = styled(IconButton)`
+  position: absolute;
+  top: ${pxToRem(16)};
+  right: ${pxToRem(16)};
+`;
 
 const menuId = 'base-menu-id';
 const menuButtonId = 'base-menu-button-id';
@@ -120,9 +123,13 @@ export function BaseMenu() {
         <HamburgerIcon />
       </IconButton>
       <FullWrapper hidden={!isOpen} id={menuId}>
-        <IconButton aria-controls={menuId} color="dark" onClick={onClickClose}>
+        <InnerIconButton
+          aria-controls={menuId}
+          color="dark"
+          onClick={onClickClose}
+        >
           <CloseIcon />
-        </IconButton>
+        </InnerIconButton>
         <Menu>
           <LinkMenuItem href={HOME_ROUTE} title="Home" onClick={onClickClose} />
           <LinkMenuItem

@@ -10,6 +10,7 @@ import { Logo } from './Logo';
 
 const FooterWrapper = styled(Grid)`
   color: ${({ theme }) => theme.colors.gray[0]};
+  fill: ${({ theme }) => theme.colors.gray[0]};
 `;
 
 const EmailLink = styled(Link)`
@@ -54,7 +55,7 @@ export function Footer() {
         </Flex>
       </Grid.Col>
       <Grid.Col md={7} mt={{ base: 100, md: 0 }} order={2} orderMd={1} p={0}>
-        <Logo fill="white" />
+        <Logo />
       </Grid.Col>
     </FooterWrapper>
   );
