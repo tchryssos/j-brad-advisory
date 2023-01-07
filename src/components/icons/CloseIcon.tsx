@@ -10,7 +10,7 @@ interface LogoProps {
 
 const Path = styled.path`
   fill: none;
-  stroke: ${({ theme }) => theme.colors.gray[9]};
+  stroke: inherit;
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;

@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { ActionIcon, Flex } from '@mantine/core';
+import { ActionIcon, ActionIconProps, Flex } from '@mantine/core';
 import { useScrollLock } from '@mantine/hooks';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
@@ -50,17 +50,21 @@ const MenuItem = styled.li`
 `;
 
 // For some reason ActionIcon doesn't agree with styled and ts
-// so we just need to redfine the important props here
-interface CloseButtonProps {
-  children: React.ReactNode;
-  onClick: () => void;
-}
-
-const CloseButton = styled(ActionIcon)<CloseButtonProps>`
+// (probably because its polymorphic)
+// so we just need to redfine some important props below
+const IconButton = styled(ActionIcon)`
   position: absolute;
   top: ${pxToRem(16)};
   right: ${pxToRem(16)};
-`;
+  stroke: ${({ theme }) => theme.colors.gray[9]};
+  :hover,
+  :active {
+    background-color: ${({ theme }) => theme.colors.purple[8]};
+    stroke: ${({ theme }) => theme.colors.gray[0]};
+  }
+` as React.ComponentType<
+  ActionIconProps & { onClick: () => void; id?: string }
+>;
 
 const menuId = 'base-menu-id';
 const menuButtonId = 'base-menu-button-id';
@@ -106,18 +110,19 @@ export function BaseMenu() {
 
   return (
     <BaseMenuComponent>
-      <ActionIcon
+      <IconButton
         aria-controls={menuId}
         aria-expanded={isOpen}
+        color="dark"
         id={menuButtonId}
         onClick={onToggle}
       >
         <HamburgerIcon />
-      </ActionIcon>
+      </IconButton>
       <FullWrapper hidden={!isOpen} id={menuId}>
-        <CloseButton aria-controls={menuId} onClick={onClickClose}>
+        <IconButton aria-controls={menuId} color="dark" onClick={onClickClose}>
           <CloseIcon />
-        </CloseButton>
+        </IconButton>
         <Menu>
           <LinkMenuItem href={HOME_ROUTE} title="Home" onClick={onClickClose} />
           <LinkMenuItem
