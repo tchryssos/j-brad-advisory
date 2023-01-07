@@ -33,8 +33,12 @@ const MdMenuWrapper = styled(Flex)`
 export function MdMenu() {
   return (
     <MdMenuWrapper align="center" gap={40}>
-      <Link href={HOME_ROUTE}>Home</Link>
-      <Link href={ABOUT_ROUTE}>About</Link>
+      <Link activeUnderline href={HOME_ROUTE}>
+        Home
+      </Link>
+      <Link activeUnderline href={ABOUT_ROUTE}>
+        About
+      </Link>
       <ContactLink href={EMAIL_LINK} target="_blank">
         Email Us
       </ContactLink>

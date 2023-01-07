@@ -10,9 +10,11 @@ interface LinkProps {
   isInternal?: boolean;
   children: React.ReactNode;
   className?: string;
+  fontSize?: number;
+  activeUnderline?: boolean;
 }
 
-interface StyledProps {
+interface StyledProps extends Pick<LinkProps, 'activeUnderline' | 'fontSize'> {
   isActive: boolean;
 }
 
@@ -20,11 +22,12 @@ const StyledLink = styled.a<StyledProps>`
   color: ${({ theme }) => theme.colors.gray[9]};
   stroke: ${({ theme }) => theme.colors.gray[9]};
   text-decoration: none;
-  font-size: ${pxToRem(16)};
+  font-size: ${({ fontSize }) => pxToRem(fontSize || 16)};
   position: relative;
   ::after {
     content: '';
-    display: ${({ isActive }) => (isActive ? 'block' : 'none')};
+    display: ${({ isActive, activeUnderline }) =>
+      isActive && activeUnderline ? 'block' : 'none'};
     height: 1px;
     width: 100%;
     background-color: ${({ theme }) => theme.colors.gray[9]};
@@ -47,6 +50,8 @@ export function Link({
   isInternal = true,
   children,
   className,
+  fontSize,
+  activeUnderline,
 }: LinkProps) {
   const router = useRouter();
   const isActive = router.asPath === href;
@@ -55,7 +60,9 @@ export function Link({
     <Flex align="center" direction="column" w="fit-content">
       <NextLink href={href} legacyBehavior passHref>
         <StyledLink
+          activeUnderline={activeUnderline}
           className={className}
+          fontSize={fontSize}
           isActive={isActive}
           rel="noopener noreferrer"
           target={isInternal ? '_self' : '_blank'}

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { ActionIcon, Flex } from '@mantine/core';
 import { useScrollLock } from '@mantine/hooks';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 import { ABOUT_ROUTE, HOME_ROUTE } from '~/constants/routing';
@@ -10,6 +10,7 @@ import { pxToRem } from '~/logic/util/styles';
 
 import { CloseIcon } from '../icons/CloseIcon';
 import { HamburgerIcon } from '../icons/Hamburger';
+import { Link } from '../Link';
 import { ContactLink } from './ContactLink';
 
 const BaseMenuComponent = styled(Flex)`
@@ -50,10 +51,12 @@ const MenuItem = styled.li`
 
 // For some reason ActionIcon doesn't agree with styled and ts
 // so we just need to redfine the important props here
-const CloseButton = styled(ActionIcon)<{
+interface CloseButtonProps {
   children: React.ReactNode;
   onClick: () => void;
-}>`
+}
+
+const CloseButton = styled(ActionIcon)<CloseButtonProps>`
   position: absolute;
   top: ${pxToRem(16)};
   right: ${pxToRem(16)};
@@ -61,6 +64,30 @@ const CloseButton = styled(ActionIcon)<{
 
 const menuId = 'base-menu-id';
 const menuButtonId = 'base-menu-button-id';
+
+interface LinkMenuItemProps {
+  href?: string;
+  title?: string;
+  onClick: () => void;
+}
+
+function LinkMenuItem({ href, title, onClick }: LinkMenuItemProps) {
+  const isActive = useRouter().asPath === href;
+
+  const isContact = !href && !title;
+
+  return (
+    <MenuItem onClick={isActive || isContact ? onClick : () => null}>
+      {!isContact ? (
+        <Link fontSize={32} href={href!}>
+          {title}
+        </Link>
+      ) : (
+        <ContactLink />
+      )}
+    </MenuItem>
+  );
+}
 
 export function BaseMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -70,6 +97,11 @@ export function BaseMenu() {
   const onToggle = () => {
     setIsOpen(!isOpen);
     setScrollLocked(!isScrollLocked);
+  };
+
+  const onClickClose = () => {
+    setIsOpen(false);
+    setScrollLocked(false);
   };
 
   return (
@@ -83,19 +115,17 @@ export function BaseMenu() {
         <HamburgerIcon />
       </ActionIcon>
       <FullWrapper hidden={!isOpen} id={menuId}>
-        <CloseButton aria-controls={menuId} onClick={onToggle}>
+        <CloseButton aria-controls={menuId} onClick={onClickClose}>
           <CloseIcon />
         </CloseButton>
         <Menu>
-          <MenuItem>
-            <Link href={HOME_ROUTE}>Home</Link>
-          </MenuItem>
-          <MenuItem>
-            <Link href={ABOUT_ROUTE}>About</Link>
-          </MenuItem>
-          <MenuItem>
-            <ContactLink />
-          </MenuItem>
+          <LinkMenuItem href={HOME_ROUTE} title="Home" onClick={onClickClose} />
+          <LinkMenuItem
+            href={ABOUT_ROUTE}
+            title="About"
+            onClick={onClickClose}
+          />
+          <LinkMenuItem onClick={onClickClose} />
         </Menu>
       </FullWrapper>
     </BaseMenuComponent>
