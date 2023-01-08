@@ -55,6 +55,7 @@ export function AreasOfFocus() {
           justify={atLeastSm ? 'space-around' : 'space-between'}
           maw={712}
         >
+          <div />
           {focusAreas.map((focusArea, i) => (
             <Flex
               direction="column"
