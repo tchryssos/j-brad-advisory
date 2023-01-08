@@ -1,4 +1,3 @@
-import styled from '@emotion/styled';
 import { Box } from '@mui/material';
 
 import { CONTAINER_WIDTH } from '~/constants/theme';

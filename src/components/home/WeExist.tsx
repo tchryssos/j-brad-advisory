@@ -1,6 +1,6 @@
-import styled from '@emotion/styled';
 import { Container, Flex, Text, TextProps, Title } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
+import { styled } from '@mui/material';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 

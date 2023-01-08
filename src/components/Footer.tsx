@@ -1,6 +1,6 @@
-import styled from '@emotion/styled';
 import { Flex, Grid, Text, Title } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
+import { styled } from '@mui/material';
 
 import { EMAIL_LINK } from '~/constants/links';
 import {
@@ -14,20 +14,20 @@ import { Link } from './Link';
 import { Logo } from './Logo';
 
 const FooterWrapper = styled(Grid)`
-  color: ${({ theme }) => theme.colors.gray[0]};
-  fill: ${({ theme }) => theme.colors.gray[0]};
+  color: ${({ theme }) => theme.palette.gray[0]};
+  fill: ${({ theme }) => theme.palette.gray[0]};
 `;
 
 const EmailLink = styled(Link)`
-  background-color: ${({ theme }) => theme.colors.red[4]};
-  color: ${({ theme }) => theme.colors.gray[0]};
+  background-color: ${({ theme }) => theme.palette.red[4]};
+  color: ${({ theme }) => theme.palette.gray[0]};
   font-weight: 600;
   padding: 0 0.5rem;
   font-size: 2rem;
   :hover,
   :active {
-    background-color: ${({ theme }) => theme.colors.cyan[0]};
-    color: ${({ theme }) => theme.colors.blue[6]};
+    background-color: ${({ theme }) => theme.palette.cyan[0]};
+    color: ${({ theme }) => theme.palette.blue[6]};
   }
   ${getMediaQueryMinWidth('md')} {
     font-size: 2.5rem;

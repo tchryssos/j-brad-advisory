@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
 import { Flex } from '@mantine/core';
+import { styled } from '@mui/material';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -20,8 +20,8 @@ interface StyledProps extends Pick<LinkProps, 'activeUnderline' | 'fontSize'> {
 }
 
 const StyledLink = styled.a<StyledProps>`
-  color: ${({ theme }) => theme.colors.gray[9]};
-  stroke: ${({ theme }) => theme.colors.gray[9]};
+  color: ${({ theme }) => theme.palette.gray[9]};
+  stroke: ${({ theme }) => theme.palette.gray[9]};
   text-decoration: none;
   font-size: ${({ fontSize }) => pxToRem(fontSize || 16)};
   position: relative;
@@ -31,17 +31,17 @@ const StyledLink = styled.a<StyledProps>`
       isActive && activeUnderline ? 'block' : 'none'};
     height: 1px;
     width: 100%;
-    background-color: ${({ theme }) => theme.colors.gray[9]};
+    background-color: ${({ theme }) => theme.palette.gray[9]};
     position: absolute;
     bottom: -4px;
     left: 0;
   }
   :hover,
   :active {
-    color: ${({ theme }) => theme.colors.blue[6]};
-    stroke: ${({ theme }) => theme.colors.blue[6]};
+    color: ${({ theme }) => theme.palette.blue[6]};
+    stroke: ${({ theme }) => theme.palette.blue[6]};
     ::after {
-      background-color: ${({ theme }) => theme.colors.blue[6]};
+      background-color: ${({ theme }) => theme.palette.blue[6]};
     }
   }
 `;

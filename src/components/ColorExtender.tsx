@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
 import { MantineColor } from '@mantine/core';
+import { styled } from '@mui/material';
 
 interface ColorExtenderProps {
   colorTuple: [MantineColor, number];
@@ -9,7 +9,7 @@ const Extender = styled.div<ColorExtenderProps>`
   :before {
     content: '';
     background-color: ${({ theme, colorTuple }) =>
-      theme.colors[colorTuple[0]][colorTuple[1]]};
+      theme.palette[colorTuple[0]][colorTuple[1]]};
     position: absolute;
     height: 100%;
     width: 12000px;

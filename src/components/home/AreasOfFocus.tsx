@@ -1,6 +1,6 @@
-import styled from '@emotion/styled';
 import { Flex, List, Text, Title } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
+import { styled } from '@mui/material';
 
 import { WheelSize } from '~/constants/images';
 import { BREAKPOINT_STRINGS, getMediaQueryMinWidth } from '~/constants/theme';

@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import { styled } from '@mui/material';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
@@ -51,11 +51,11 @@ const MenuItem = styled.li`
 // (probably because its polymorphic)
 // so we just need to redefine some important props below
 const IconButton = styled(ActionIcon)`
-  stroke: ${({ theme }) => theme.colors.gray[9]};
+  stroke: ${({ theme }) => theme.palette.gray[9]};
   :hover,
   :active {
-    background-color: ${({ theme }) => theme.colors.purple[8]};
-    stroke: ${({ theme }) => theme.colors.gray[0]};
+    background-color: ${({ theme }) => theme.palette.purple[8]};
+    stroke: ${({ theme }) => theme.palette.gray[0]};
   }
 ` as React.ComponentType<
   ActionIconProps & { onClick: () => void; id?: string }

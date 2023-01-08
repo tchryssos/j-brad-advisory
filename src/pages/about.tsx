@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
 import { Flex, Paper, Text, Title } from '@mantine/core';
+import { styled } from '@mui/material';
 
 import { ArrowIcon } from '~/components/icons/ArrowIcon';
 import { Image } from '~/components/Image';
@@ -38,9 +38,9 @@ const AboutLink = styled(Link)`
   padding: 4px 8px;
   transform: translateX(-8px);
   :hover {
-    background-color: ${({ theme }) => theme.colors.cyan[0]};
-    color: ${({ theme }) => theme.colors.blue[6]};
-    stroke: ${({ theme }) => theme.colors.blue[6]};
+    background-color: ${({ theme }) => theme.palette.cyan[0]};
+    color: ${({ theme }) => theme.palette.blue[6]};
+    stroke: ${({ theme }) => theme.palette.blue[6]};
   }
 `;
 

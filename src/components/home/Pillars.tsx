@@ -1,6 +1,6 @@
-import styled from '@emotion/styled';
 import { Flex, SimpleGrid, Text, Title } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
+import { styled } from '@mui/material';
 
 import { BREAKPOINT_STRINGS, BREAKPOINT_VALUES } from '~/constants/theme';
 import { useGetGutterSize } from '~/logic/hooks/layout';

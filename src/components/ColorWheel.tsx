@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
 import { useMediaQuery } from '@mantine/hooks';
+import { styled } from '@mui/material';
 import throttle from 'lodash.throttle';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';

@@ -1,6 +1,6 @@
-import styled from '@emotion/styled';
 import { Flex, SimpleGrid, Text, Title } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
+import { styled } from '@mui/material';
 
 import {
   BREAKPOINT_STRINGS,
@@ -29,9 +29,9 @@ const HowWeWorkGrid = styled(Flex)`
   display: grid;
   gap: 110px;
   grid-template-columns: 1fr;
-  background-color: ${({ theme }) => theme.colors.blue[6]};
+  background-color: ${({ theme }) => theme.palette.blue[6]};
   gap: 20px;
-  color: ${({ theme }) => theme.colors.gray[0]};
+  color: ${({ theme }) => theme.palette.gray[0]};
   ${getMediaQueryMinWidth('md')} {
     grid-template-columns: 1fr 1fr;
     gap: 110px;
@@ -54,7 +54,7 @@ const JumboColorDivider = styled.div`
   height: ${imageDividerHeight}px;
   display: none;
   position: relative;
-  background-color: ${({ theme }) => theme.colors.orange[4]};
+  background-color: ${({ theme }) => theme.palette.orange[4]};
   @media only screen and (min-width: 1800px) {
     display: block;
   }

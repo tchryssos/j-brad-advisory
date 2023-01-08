@@ -1,16 +1,16 @@
-import styled from '@emotion/styled';
-import { Flex } from '@mantine/core';
+import { Box, styled } from '@mui/material';
 
 import { HOME_ROUTE } from '~/constants/routing';
 import { CONTAINER_WIDTH } from '~/constants/theme';
 import { useGetGutterSize } from '~/logic/hooks/layout';
+import { pxToRem } from '~/logic/util/styles';
 
 import { Link } from '../Link';
 import { Logo } from '../Logo';
 import { BaseMenu } from './BaseMenu';
 import { MdMenu } from './MdMenu';
 
-const Nav = styled.nav`
+const Nav = styled('nav')`
   width: 100%;
   display: flex;
   justify-content: center;
@@ -23,8 +23,8 @@ const LogoLink = styled(Link)`
   :hover,
   :active {
     stroke: none;
-    fill: ${({ theme }) => theme.colors.gray[0]};
-    background-color: ${({ theme }) => theme.colors.purple[8]};
+    fill: ${({ theme }) => theme.palette.text.primary};
+    background-color: ${({ theme }) => theme.palette.primary.dark};
   }
 `;
 
@@ -32,13 +32,13 @@ export function NavBar() {
   const gutterSize = useGetGutterSize();
   return (
     <Nav>
-      <Flex
-        align="center"
-        justify="space-between"
-        maw={CONTAINER_WIDTH}
+      <Box
+        alignItems="center"
+        justifyContent="space-between"
+        maxWidth={pxToRem(CONTAINER_WIDTH)}
         px={gutterSize}
         py={20}
-        w="100%"
+        width="100%"
       >
         <LogoLink href={HOME_ROUTE} title="J. Bradford Advisory Home">
           <Logo />
@@ -46,7 +46,7 @@ export function NavBar() {
         {/* Internally, these use a media query to display none if not right size */}
         <MdMenu />
         <BaseMenu />
-      </Flex>
+      </Box>
     </Nav>
   );
 }
