@@ -90,7 +90,7 @@ export function HowWeWork() {
           We work with C level executives that need sounding boards and
           objective feedback.
         </Title>
-        <Flex direction="column" gap={{ base: 20, md: 30 }}>
+        <Flex flexDirection="column" gap={{ base: 20, md: 30 }}>
           <Text size={atLeastMd ? pFontSize.md : pFontSize.base}>
             We build actionable plans to drive results in any area of your
             business.
@@ -106,7 +106,7 @@ export function HowWeWork() {
       <Flex pos="relative">
         <ColorExtender colorTuple={['blue', 6]} />
         <HowWeWorkGrid pos="relative" px={gutterSize} py={ySpacing}>
-          <Flex direction="column" gap={30}>
+          <Flex flexDirection="column" gap={30}>
             <Title order={2} size={atLeastSm ? hFontSize.sm : hFontSize.base}>
               How we work
             </Title>

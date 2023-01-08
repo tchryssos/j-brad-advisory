@@ -9,7 +9,7 @@ interface LogoProps {
   className?: string;
 }
 
-const Path = styled.path`
+const Path = styled('path')`
   fill: inherit;
 `;
 

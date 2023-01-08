@@ -1,5 +1,4 @@
-import { Flex } from '@mantine/core';
-import { styled } from '@mui/material';
+import { Box, styled } from '@mui/material';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -19,9 +18,9 @@ interface StyledProps extends Pick<LinkProps, 'activeUnderline' | 'fontSize'> {
   isActive: boolean;
 }
 
-const StyledLink = styled.a<StyledProps>`
-  color: ${({ theme }) => theme.palette.gray[9]};
-  stroke: ${({ theme }) => theme.palette.gray[9]};
+const StyledLink = styled('a')<StyledProps>`
+  color: ${({ theme }) => theme.palette.text.primary};
+  stroke: ${({ theme }) => theme.palette.text.primary};
   text-decoration: none;
   font-size: ${({ fontSize }) => pxToRem(fontSize || 16)};
   position: relative;
@@ -31,7 +30,7 @@ const StyledLink = styled.a<StyledProps>`
       isActive && activeUnderline ? 'block' : 'none'};
     height: 1px;
     width: 100%;
-    background-color: ${({ theme }) => theme.palette.gray[9]};
+    background-color: ${({ theme }) => theme.palette.text.primary};
     position: absolute;
     bottom: -4px;
     left: 0;
@@ -59,7 +58,12 @@ export function Link({
   const isActive = router.asPath === href;
 
   return (
-    <Flex align="center" direction="column" w="fit-content">
+    <Box
+      alignItems="center"
+      display="flex"
+      flexDirection="column"
+      width="fit-content"
+    >
       <NextLink href={href} legacyBehavior passHref>
         <StyledLink
           activeUnderline={activeUnderline}
@@ -73,6 +77,6 @@ export function Link({
           {children}
         </StyledLink>
       </NextLink>
-    </Flex>
+    </Box>
   );
 }

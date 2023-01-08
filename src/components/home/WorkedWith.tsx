@@ -60,9 +60,9 @@ function WorkedBlock({ logos, title, i }: WorkedBlockProps) {
 
   return (
     <Flex
-      align="center"
+      alignItems="center"
       bg="purple.8"
-      direction="column"
+      flexDirection="column"
       justify="center"
       pb={40}
       pos="relative"
@@ -73,7 +73,7 @@ function WorkedBlock({ logos, title, i }: WorkedBlockProps) {
       <Title color="gray.0" mb={40} order={2} size={atLeastMd ? 20 : 18}>
         {title}
       </Title>
-      <Flex direction={atLeastMd ? 'row' : 'column'}>
+      <Flex flexDirection={atLeastMd ? 'row' : 'column'}>
         {logos.map((logo) => (
           <Image
             alt={logo.alt}

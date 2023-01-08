@@ -105,7 +105,7 @@ export function WeExist() {
 
   return (
     <Flex
-      direction="column"
+      flexDirection="column"
       h={{ base: pxToRem(232), md: pxToRem(384) }}
       justify="center"
       mt={{ base: 24, lg: 100 }}

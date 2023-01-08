@@ -78,6 +78,13 @@ export const THEME = createTheme({
   palette,
   breakpoints,
   typography,
+  components: {
+    MuiTypography: {
+      defaultProps: {
+        variant: 'body1',
+      },
+    },
+  },
 });
 
 export const CONTAINER_WIDTH = BREAKPOINT_VALUES.xl;

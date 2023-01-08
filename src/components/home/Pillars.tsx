@@ -59,7 +59,7 @@ export function Pillars() {
   return (
     <Flex
       bg="cyan.0"
-      direction="column"
+      flexDirection="column"
       gap={20}
       mt={atLeastMd ? 68 : 40}
       pb={80}
@@ -100,7 +100,7 @@ export function Pillars() {
                 objectFit: 'cover',
               }}
             />
-            <Flex direction="column" gap={20} h="100%">
+            <Flex flexDirection="column" gap={20} h="100%">
               <Title order={3} size={atLeastMd ? 20 : 18}>
                 {pillarGroup.title}
               </Title>

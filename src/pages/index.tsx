@@ -12,7 +12,7 @@ function Home() {
   return (
     <Layout title="Home - J. Bradford Advisory">
       <WeExist />
-      <Flex direction="column" pos="relative">
+      <Flex flexDirection="column" pos="relative">
         <ColorWheel />
         <AreasOfFocus />
         <Pillars />
