@@ -1,4 +1,4 @@
-import { styled } from '@mui/material';
+import { Box, IconButton as MUIIconButton, styled } from '@mui/material';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
@@ -11,14 +11,14 @@ import { HamburgerIcon } from '../icons/Hamburger';
 import { Link } from '../Link';
 import { ContactLink } from './ContactLink';
 
-const BaseMenuComponent = styled(Flex)`
+const BaseMenuComponent = styled(Box)`
   display: block;
   ${getMediaQueryMinWidth('md')} {
     display: none;
   }
 `;
 
-const FullWrapper = styled.div`
+const FullWrapper = styled('div')`
   width: 100vw;
   height: 100vh;
   position: absolute;
@@ -30,7 +30,7 @@ const FullWrapper = styled.div`
   z-index: 1000;
 `;
 
-const Menu = styled.ul`
+const Menu = styled('ul')`
   padding: 0;
   margin: 0;
   list-style: none;
@@ -42,7 +42,7 @@ const Menu = styled.ul`
   height: 100%;
 `;
 
-const MenuItem = styled.li`
+const MenuItem = styled('li')`
   padding: 0;
   margin: 0;
 `;
@@ -50,16 +50,14 @@ const MenuItem = styled.li`
 // For some reason ActionIcon doesn't agree with styled and ts
 // (probably because its polymorphic)
 // so we just need to redefine some important props below
-const IconButton = styled(ActionIcon)`
-  stroke: ${({ theme }) => theme.palette.gray[9]};
+const IconButton = styled(MUIIconButton)`
+  stroke: ${({ theme }) => theme.palette.text.primary};
   :hover,
   :active {
-    background-color: ${({ theme }) => theme.palette.purple[8]};
-    stroke: ${({ theme }) => theme.palette.gray[0]};
+    background-color: ${({ theme }) => theme.palette.primary.dark};
+    stroke: ${({ theme }) => theme.palette.common.white};
   }
-` as React.ComponentType<
-  ActionIconProps & { onClick: () => void; id?: string }
->;
+`;
 
 const InnerIconButton = styled(IconButton)`
   position: absolute;
@@ -97,35 +95,30 @@ function LinkMenuItem({ href, title, onClick }: LinkMenuItemProps) {
 export function BaseMenu() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const [isScrollLocked, setScrollLocked] = useScrollLock();
+  // const [isScrollLocked, setScrollLocked] = useScrollLock();
 
   const onToggle = () => {
     setIsOpen(!isOpen);
-    setScrollLocked(!isScrollLocked);
+    // setScrollLocked(!isScrollLocked);
   };
 
   const onClickClose = () => {
     setIsOpen(false);
-    setScrollLocked(false);
+    // setScrollLocked(false);
   };
 
   return (
-    <BaseMenuComponent>
+    <BaseMenuComponent display="flex">
       <IconButton
         aria-controls={menuId}
         aria-expanded={isOpen}
-        color="dark"
         id={menuButtonId}
         onClick={onToggle}
       >
         <HamburgerIcon />
       </IconButton>
       <FullWrapper hidden={!isOpen} id={menuId}>
-        <InnerIconButton
-          aria-controls={menuId}
-          color="dark"
-          onClick={onClickClose}
-        >
+        <InnerIconButton aria-controls={menuId} onClick={onClickClose}>
           <CloseIcon />
         </InnerIconButton>
         <Menu>

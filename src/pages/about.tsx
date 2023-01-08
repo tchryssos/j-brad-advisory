@@ -39,8 +39,8 @@ const AboutLink = styled(Link)`
   transform: translateX(-8px);
   :hover {
     background-color: ${({ theme }) => theme.palette.cyan[0]};
-    color: ${({ theme }) => theme.palette.blue[6]};
-    stroke: ${({ theme }) => theme.palette.blue[6]};
+    color: ${({ theme }) => theme.palette.primary.main};
+    stroke: ${({ theme }) => theme.palette.primary.main};
   }
 `;
 

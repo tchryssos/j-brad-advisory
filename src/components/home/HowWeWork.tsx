@@ -29,7 +29,7 @@ const HowWeWorkGrid = styled(Flex)`
   display: grid;
   gap: 110px;
   grid-template-columns: 1fr;
-  background-color: ${({ theme }) => theme.palette.blue[6]};
+  background-color: ${({ theme }) => theme.palette.primary.main};
   gap: 20px;
   color: ${({ theme }) => theme.palette.gray[0]};
   ${getMediaQueryMinWidth('md')} {

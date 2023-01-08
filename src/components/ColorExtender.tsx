@@ -1,15 +1,13 @@
-import { MantineColor } from '@mantine/core';
 import { styled } from '@mui/material';
 
 interface ColorExtenderProps {
-  colorTuple: [MantineColor, number];
+  color: string;
 }
 
-const Extender = styled.div<ColorExtenderProps>`
+const Extender = styled('div')<ColorExtenderProps>`
   :before {
     content: '';
-    background-color: ${({ theme, colorTuple }) =>
-      theme.palette[colorTuple[0]][colorTuple[1]]};
+    background-color: ${({ color }) => color};
     position: absolute;
     height: 100%;
     width: 12000px;
@@ -19,6 +17,6 @@ const Extender = styled.div<ColorExtenderProps>`
   }
 `;
 
-export function ColorExtender({ colorTuple }: ColorExtenderProps) {
-  return <Extender colorTuple={colorTuple} />;
+export function ColorExtender({ color }: ColorExtenderProps) {
+  return <Extender color={color} />;
 }

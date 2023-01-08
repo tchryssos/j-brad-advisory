@@ -38,10 +38,10 @@ const StyledLink = styled.a<StyledProps>`
   }
   :hover,
   :active {
-    color: ${({ theme }) => theme.palette.blue[6]};
-    stroke: ${({ theme }) => theme.palette.blue[6]};
+    color: ${({ theme }) => theme.palette.primary.main};
+    stroke: ${({ theme }) => theme.palette.primary.main};
     ::after {
-      background-color: ${({ theme }) => theme.palette.blue[6]};
+      background-color: ${({ theme }) => theme.palette.primary.main};
     }
   }
 `;
