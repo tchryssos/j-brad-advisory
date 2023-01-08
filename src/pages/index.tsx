@@ -1,15 +1,24 @@
-import { Flex, Text } from '@mantine/core';
+import { Flex } from '@mantine/core';
 
+import { ColorWheel } from '~/components/ColorWheel';
+import { AreasOfFocus } from '~/components/home/AreasOfFocus';
+import { HowWeWork } from '~/components/home/HowWeWork';
+import { Pillars } from '~/components/home/Pillars';
+import { WeExist } from '~/components/home/WeExist';
+import { WorkedWith } from '~/components/home/WorkedWith';
 import { Layout } from '~/components/meta/Layout';
 
 function Home() {
   return (
-    <Layout>
-      <Flex bg="red">
-        <Text>
-          Welcome to Next JS! Edit src/pages/index.tsx to get started...
-        </Text>
+    <Layout title="Home - J. Bradford Advisory">
+      <WeExist />
+      <Flex direction="column" pos="relative">
+        <ColorWheel />
+        <AreasOfFocus />
+        <Pillars />
       </Flex>
+      <WorkedWith />
+      <HowWeWork />
     </Layout>
   );
 }
