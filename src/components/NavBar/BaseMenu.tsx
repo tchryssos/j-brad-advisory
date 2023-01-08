@@ -29,7 +29,7 @@ const FullWrapper = styled.div`
   right: 0;
   bottom: 0;
   background-color: ${({ theme }) => theme.colors.cyan[0]};
-  z-index: 100;
+  z-index: 1000;
 `;
 
 const Menu = styled.ul`
