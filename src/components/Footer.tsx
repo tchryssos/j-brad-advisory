@@ -4,6 +4,7 @@ import { useMediaQuery } from '@mantine/hooks';
 
 import { EMAIL_LINK } from '~/constants/links';
 import { BREAKPOINT_STRINGS, getMediaQueryMinWidth } from '~/constants/theme';
+import { useGetGutterSize } from '~/logic/hooks/layout';
 
 import { Link } from './Link';
 import { Logo } from './Logo';
@@ -31,12 +32,13 @@ const EmailLink = styled(Link)`
 
 export function Footer() {
   const atLeastMd = useMediaQuery(BREAKPOINT_STRINGS.md);
+  const gutterSize = useGetGutterSize();
   return (
     <FooterWrapper
       align="flex-end"
       bg="purple.8"
       m={0}
-      px={{ base: 16, md: 60 }}
+      px={gutterSize}
       py={{ base: 40, md: 60 }}
     >
       <Grid.Col md={5} order={1} orderMd={2} p={0}>

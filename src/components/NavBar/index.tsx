@@ -3,6 +3,7 @@ import { Flex } from '@mantine/core';
 
 import { HOME_ROUTE } from '~/constants/routing';
 import { CONTAINER_WIDTH } from '~/constants/theme';
+import { useGetGutterSize } from '~/logic/hooks/layout';
 
 import { Link } from '../Link';
 import { Logo } from '../Logo';
@@ -28,13 +29,15 @@ const LogoLink = styled(Link)`
 `;
 
 export function NavBar() {
+  const gutterSize = useGetGutterSize();
   return (
     <Nav>
       <Flex
         align="center"
         justify="space-between"
         maw={CONTAINER_WIDTH}
-        p={16}
+        px={gutterSize}
+        py={20}
         w="100%"
       >
         <LogoLink href={HOME_ROUTE} title="J. Bradford Advisory Home">

@@ -37,7 +37,7 @@ const WheelSpaceGrid = styled.div`
 const FakeListItem = styled.div`
   height: 31px;
   display: none;
-  ${getMediaQueryMinWidth('md')} {
+  ${getMediaQueryMinWidth('sm')} {
     display: block;
   }
 `;
@@ -62,7 +62,7 @@ export function AreasOfFocus() {
               key={focusArea.join('-')}
             >
               {i === 0 && (
-                <Title mb={20} order={2} size={atLeastSm ? 21 : 18}>
+                <Title mb={20} order={2} size={atLeastSm ? 20 : 18}>
                   Our focus areas
                 </Title>
               )}

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 import { BREAKPOINT_STRINGS, getMediaQueryMinWidth } from '~/constants/theme';
+import { useGetGutterSize } from '~/logic/hooks/layout';
 import { pxToRem } from '~/logic/util/styles';
 
 const swappableText = [
@@ -73,7 +74,9 @@ function MdContainer({ children, atLeastMd }: MdContainerProps) {
 }
 
 export function WeExist() {
+  const atLeastSm = useMediaQuery(BREAKPOINT_STRINGS.sm);
   const atLeastMd = useMediaQuery(BREAKPOINT_STRINGS.md);
+  const gutterSize = useGetGutterSize();
 
   const [activeTextIndex, setActiveTextIndex] = useState(0);
 
@@ -94,6 +97,8 @@ export function WeExist() {
     };
   }, []);
 
+  const imageSize = atLeastMd ? 292 : atLeastSm ? 175 : 104;
+
   return (
     <Flex
       direction="column"
@@ -101,15 +106,15 @@ export function WeExist() {
       justify="center"
       mt={24}
       pos="relative"
-      px={16}
+      px={gutterSize}
     >
       <MdContainer atLeastMd={atLeastMd}>
         <WeExistImage
           alt=""
-          height={atLeastMd ? 292 : 104}
+          height={imageSize}
           role="presentation"
           src="/mushroom_circle.png"
-          width={atLeastMd ? 292 : 104}
+          width={imageSize}
         />
         <Title fw="bold" order={1} pos="relative" size={atLeastMd ? 72 : 32}>
           We exist to

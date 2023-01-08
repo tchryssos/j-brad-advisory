@@ -7,6 +7,7 @@ import {
   BREAKPOINT_VALUES,
   getMediaQueryMinWidth,
 } from '~/constants/theme';
+import { useGetGutterSize } from '~/logic/hooks/layout';
 
 import { Image } from '../Image';
 
@@ -17,26 +18,28 @@ const pFontSize = {
 
 const hFontSize = {
   base: 18,
-  md: 32,
+  sm: 32,
 };
 
-const HowWeWorkGrid = styled.div`
+const ySpacing = 80;
+
+const HowWeWorkGrid = styled(Flex)`
   display: grid;
   gap: 110px;
   grid-template-columns: 1fr;
   background-color: ${({ theme }) => theme.colors.blue[6]};
-  padding: 80px 20px;
   gap: 20px;
   color: ${({ theme }) => theme.colors.gray[0]};
   ${getMediaQueryMinWidth('md')} {
     grid-template-columns: 1fr 1fr;
     gap: 110px;
-    padding: 80px 60px;
   }
 `;
 
 export function HowWeWork() {
   const atLeastMd = useMediaQuery(BREAKPOINT_STRINGS.md);
+  const atLeastSm = useMediaQuery(BREAKPOINT_STRINGS.sm);
+  const gutterSize = useGetGutterSize();
   return (
     <>
       <Image
@@ -50,13 +53,13 @@ export function HowWeWork() {
         }}
       />
       <SimpleGrid
-        breakpoints={[{ minWidth: BREAKPOINT_VALUES.md, spacing: 20, cols: 2 }]}
+        breakpoints={[{ minWidth: BREAKPOINT_VALUES.sm, spacing: 20, cols: 2 }]}
         cols={1}
-        my={80}
-        px={{ base: 20, md: 60 }}
+        my={ySpacing}
+        px={gutterSize}
         spacing={40}
       >
-        <Title order={2} size={atLeastMd ? hFontSize.md : hFontSize.base}>
+        <Title order={2} size={atLeastSm ? hFontSize.sm : hFontSize.base}>
           We work with C level executives that need sounding boards and
           objective feedback.
         </Title>
@@ -73,9 +76,9 @@ export function HowWeWork() {
           </Text>
         </Flex>
       </SimpleGrid>
-      <HowWeWorkGrid>
+      <HowWeWorkGrid px={gutterSize} py={ySpacing}>
         <Flex direction="column" gap={30}>
-          <Title order={2} size={atLeastMd ? hFontSize.md : hFontSize.base}>
+          <Title order={2} size={atLeastSm ? hFontSize.sm : hFontSize.base}>
             How we work
           </Title>
           <Text size={atLeastMd ? pFontSize.md : pFontSize.base}>

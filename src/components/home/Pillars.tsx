@@ -2,11 +2,8 @@ import styled from '@emotion/styled';
 import { Flex, SimpleGrid, Text, Title } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
 
-import {
-  BREAKPOINT_STRINGS,
-  BREAKPOINT_VALUES,
-  getMediaQueryMinWidth,
-} from '~/constants/theme';
+import { BREAKPOINT_STRINGS, BREAKPOINT_VALUES } from '~/constants/theme';
+import { useGetGutterSize } from '~/logic/hooks/layout';
 
 import { Image } from '../Image';
 
@@ -36,15 +33,15 @@ const pillarGroups = [
   },
 ];
 
+const PillarGrid = styled(SimpleGrid)`
+  column-gap: 32px;
+  row-gap: 16px;
+`;
+
 const PillarItem = styled.div`
   display: grid;
   gap: 20px;
   grid-template-rows: auto 1fr;
-  ${getMediaQueryMinWidth('sm')} {
-    :nth-child(2n) {
-      margin-top: 100px;
-    }
-  }
 `;
 
 const PillarPicture = styled(Image)`
@@ -56,6 +53,7 @@ const PillarPicture = styled(Image)`
 export function Pillars() {
   const atLeastSm = useMediaQuery(BREAKPOINT_STRINGS.sm);
   const atLeastMd = useMediaQuery(BREAKPOINT_STRINGS.md);
+  const gutterSize = useGetGutterSize();
 
   return (
     <Flex
@@ -65,12 +63,12 @@ export function Pillars() {
       mt={atLeastMd ? 68 : 40}
       pb={80}
       pt={atLeastMd ? 154 : 80}
-      px={atLeastMd ? 60 : 16}
+      px={gutterSize}
     >
-      <Title order={2} size={atLeastMd ? 21 : 18}>
+      <Title order={2} size={atLeastSm ? 20 : 18}>
         Our pillars
       </Title>
-      <SimpleGrid
+      <PillarGrid
         breakpoints={[
           {
             maxWidth: BREAKPOINT_VALUES.sm - 1,
@@ -87,7 +85,6 @@ export function Pillars() {
         ]}
         cols={1}
         p={0}
-        spacing={atLeastSm ? 16 : 40}
       >
         {pillarGroups.map((pillarGroup) => (
           <PillarItem key={pillarGroup.title}>
@@ -108,7 +105,7 @@ export function Pillars() {
             </Flex>
           </PillarItem>
         ))}
-      </SimpleGrid>
+      </PillarGrid>
     </Flex>
   );
 }
