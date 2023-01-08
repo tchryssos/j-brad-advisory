@@ -35,6 +35,13 @@ const AboutLink = styled(Link)`
   display: flex;
   align-items: center;
   gap: 8px;
+  padding: 4px 8px;
+  transform: translateX(-8px);
+  :hover {
+    background-color: ${({ theme }) => theme.colors.cyan[0]};
+    color: ${({ theme }) => theme.colors.blue[6]};
+    stroke: ${({ theme }) => theme.colors.blue[6]};
+  }
 `;
 
 function About() {

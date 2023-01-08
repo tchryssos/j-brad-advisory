@@ -25,7 +25,7 @@ const HowWeWorkGrid = styled.div`
   gap: 110px;
   grid-template-columns: 1fr;
   background-color: ${({ theme }) => theme.colors.blue[6]};
-  padding: 0 20px;
+  padding: 80px 20px;
   gap: 20px;
   color: ${({ theme }) => theme.colors.gray[0]};
   ${getMediaQueryMinWidth('md')} {
@@ -33,13 +33,6 @@ const HowWeWorkGrid = styled.div`
     gap: 110px;
     padding: 80px 60px;
   }
-`;
-
-const ImageContainer = styled(Flex)`
-  order: -1;
-  ${getMediaQueryMinWidth('md')} {
-    order: 2;
-  } ;
 `;
 
 export function HowWeWork() {
@@ -59,7 +52,7 @@ export function HowWeWork() {
       <SimpleGrid
         breakpoints={[{ minWidth: BREAKPOINT_VALUES.md, spacing: 20, cols: 2 }]}
         cols={1}
-        my={{ base: 86, md: 80 }}
+        my={80}
         px={{ base: 20, md: 60 }}
         spacing={40}
       >
@@ -108,21 +101,19 @@ export function HowWeWork() {
             agencies engaged and perform better.
           </Text>
         </Flex>
-        <ImageContainer
-          h="100%"
-          justify={{ base: 'center', md: 'flex-end' }}
-          mih={224}
-        >
-          <Image
-            alt=""
-            fill
-            role="presentation"
-            src="/eclipse.png"
-            style={{
-              objectFit: 'contain',
-            }}
-          />
-        </ImageContainer>
+        {atLeastMd && (
+          <Flex h="100%" justify={{ base: 'center', md: 'flex-end' }} mih={224}>
+            <Image
+              alt=""
+              fill
+              role="presentation"
+              src="/eclipse.png"
+              style={{
+                objectFit: 'contain',
+              }}
+            />
+          </Flex>
+        )}
       </HowWeWorkGrid>
     </>
   );

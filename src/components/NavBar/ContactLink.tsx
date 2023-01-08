@@ -1,10 +1,11 @@
 import styled from '@emotion/styled';
 
 import { EMAIL_LINK } from '~/constants/links';
+import { getMediaQueryMinWidth } from '~/constants/theme';
 import { pxToRem } from '~/logic/util/styles';
 
 const StyledLink = styled.a`
-  font-size: ${pxToRem(16)};
+  font-size: ${pxToRem(22)};
   border: 2px solid ${({ theme }) => theme.colors.gray[9]};
   border-radius: 500px;
   padding: ${pxToRem(4)} ${pxToRem(16)};
@@ -16,6 +17,9 @@ const StyledLink = styled.a`
     border-color: ${({ theme }) => theme.colors.blue[6]};
     background-color: ${({ theme }) => theme.colors.blue[0]};
   }
+  ${getMediaQueryMinWidth('md')} {
+    font-size: ${pxToRem(16)};
+  }
 `;
 
 interface ContactLinkProps {
@@ -25,7 +29,7 @@ interface ContactLinkProps {
 export function ContactLink({ className }: ContactLinkProps) {
   return (
     <StyledLink className={className} href={EMAIL_LINK} target="_blank">
-      Email Us
+      Email us
     </StyledLink>
   );
 }
