@@ -12,8 +12,8 @@ const Extender = styled.div<ColorExtenderProps>`
       theme.colors[colorTuple[0]][colorTuple[1]]};
     position: absolute;
     height: 100%;
-    width: 9000px;
-    left: -4500px;
+    width: 12000px;
+    left: -6000px;
     top: 0;
     z-index: -1;
   }

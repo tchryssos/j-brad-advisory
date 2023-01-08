@@ -23,6 +23,7 @@ const hFontSize = {
 };
 
 const ySpacing = 80;
+const imageDividerHeight = 50;
 
 const HowWeWorkGrid = styled(Flex)`
   display: grid;
@@ -37,22 +38,47 @@ const HowWeWorkGrid = styled(Flex)`
   }
 `;
 
+const ImageDivider = styled(Image)`
+  ${getMediaQueryMinWidth('xl')} {
+    width: 110vw;
+    transform: translateX(-10vw);
+  }
+  /* Image gets insanely stretched out above this size */
+  @media only screen and (min-width: 1800px) {
+    display: none;
+  }
+`;
+
+const JumboColorDivider = styled.div`
+  width: 100%;
+  height: ${imageDividerHeight}px;
+  display: none;
+  position: relative;
+  background-color: ${({ theme }) => theme.colors.orange[4]};
+  @media only screen and (min-width: 1800px) {
+    display: block;
+  }
+`;
+
 export function HowWeWork() {
   const atLeastMd = useMediaQuery(BREAKPOINT_STRINGS.md);
   const atLeastSm = useMediaQuery(BREAKPOINT_STRINGS.sm);
   const gutterSize = useGetGutterSize();
   return (
     <>
-      <Image
+      <ImageDivider
         alt=""
         fill
-        minHeight={50}
+        minHeight={imageDividerHeight}
         role="presentation"
         src="/flower_strip.png"
         style={{
           objectFit: 'cover',
         }}
       />
+      <JumboColorDivider>
+        <ColorExtender colorTuple={['orange', 4]} />
+      </JumboColorDivider>
       <SimpleGrid
         breakpoints={[{ minWidth: BREAKPOINT_VALUES.sm, spacing: 20, cols: 2 }]}
         cols={1}
