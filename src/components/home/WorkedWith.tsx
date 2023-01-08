@@ -4,6 +4,8 @@ import Image from 'next/image';
 
 import { BREAKPOINT_STRINGS } from '~/constants/theme';
 
+import { ColorExtender } from '../ColorExtender';
+
 type LogoObj = {
   src: string;
   alt: string;
@@ -63,9 +65,11 @@ function WorkedBlock({ logos, title, i }: WorkedBlockProps) {
       direction="column"
       justify="center"
       pb={40}
+      pos="relative"
       pt={i === 1 ? 0 : 40}
       w="100%"
     >
+      <ColorExtender colorTuple={['purple', 8]} />
       <Title color="gray.0" mb={40} order={2} size={atLeastMd ? 20 : 18}>
         {title}
       </Title>

@@ -5,6 +5,7 @@ import { useMediaQuery } from '@mantine/hooks';
 import { BREAKPOINT_STRINGS, BREAKPOINT_VALUES } from '~/constants/theme';
 import { useGetGutterSize } from '~/logic/hooks/layout';
 
+import { ColorExtender } from '../ColorExtender';
 import { Image } from '../Image';
 
 const pillarGroups = [
@@ -62,9 +63,11 @@ export function Pillars() {
       gap={20}
       mt={atLeastMd ? 68 : 40}
       pb={80}
+      pos="relative"
       pt={atLeastMd ? 154 : 80}
       px={gutterSize}
     >
+      <ColorExtender colorTuple={['cyan', 0]} />
       <Title order={2} size={atLeastSm ? 20 : 18}>
         Our pillars
       </Title>

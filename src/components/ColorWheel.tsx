@@ -16,6 +16,7 @@ const WheelImage = styled(Image)<WheelImageProps>`
   top: 0;
   left: 0;
   transform: translateX(-50%) rotate(${({ rotationDeg }) => rotationDeg}deg);
+  z-index: 100;
 `;
 
 export function ColorWheel() {

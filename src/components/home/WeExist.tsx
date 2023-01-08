@@ -4,7 +4,11 @@ import { useMediaQuery } from '@mantine/hooks';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-import { BREAKPOINT_STRINGS, getMediaQueryMinWidth } from '~/constants/theme';
+import {
+  BREAKPOINT_STRINGS,
+  BREAKPOINT_VALUES,
+  getMediaQueryMinWidth,
+} from '~/constants/theme';
 import { useGetGutterSize } from '~/logic/hooks/layout';
 import { pxToRem } from '~/logic/util/styles';
 
@@ -65,7 +69,7 @@ interface MdContainerProps {
 
 function MdContainer({ children, atLeastMd }: MdContainerProps) {
   return atLeastMd ? (
-    <Container maw={1000} pos="relative" w="100%">
+    <Container maw={BREAKPOINT_VALUES.md} pos="relative" w="100%">
       {children}
     </Container>
   ) : (
@@ -104,7 +108,7 @@ export function WeExist() {
       direction="column"
       h={{ base: pxToRem(232), md: pxToRem(384) }}
       justify="center"
-      mt={24}
+      mt={{ base: 24, lg: 100 }}
       pos="relative"
       px={gutterSize}
     >
