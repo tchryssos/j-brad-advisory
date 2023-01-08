@@ -1,6 +1,4 @@
 import styled from '@emotion/styled';
-import { ActionIcon, ActionIconProps, Flex } from '@mantine/core';
-import { useScrollLock } from '@mantine/hooks';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
@@ -28,7 +26,7 @@ const FullWrapper = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: ${({ theme }) => theme.colors.cyan[0]};
+  background-color: ${({ theme }) => theme.palette.primary.light};
   z-index: 1000;
 `;
 

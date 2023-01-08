@@ -8,7 +8,6 @@ type HeadProps = {
 export function Head({ title = 'J. Bradford Advisory' }: HeadProps) {
   return (
     <NextHead>
-      {/* Uncomment the following lines if using google fonts */}
       <link
         crossOrigin="use-credentials"
         href="https://fonts.gstatic.com"
