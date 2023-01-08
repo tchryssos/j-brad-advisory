@@ -40,7 +40,7 @@ const PillarItem = styled.div`
   display: grid;
   gap: 20px;
   grid-template-rows: auto 1fr;
-  ${getMediaQueryMinWidth('md')} {
+  ${getMediaQueryMinWidth('sm')} {
     :nth-child(2n) {
       margin-top: 100px;
     }

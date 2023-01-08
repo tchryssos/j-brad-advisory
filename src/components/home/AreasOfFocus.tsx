@@ -26,7 +26,7 @@ const WheelSpaceGrid = styled.div`
   display: grid;
   grid-template-columns: ${WheelSize.base / 2}px auto;
   gap: ${pxToRem(44)};
-  margin-top: ${pxToRem(72)};
+  margin-top: ${pxToRem(60)};
   ${getMediaQueryMinWidth('md')} {
     grid-template-columns: ${WheelSize.md / 2}px auto;
     gap: 0;

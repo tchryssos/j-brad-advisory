@@ -35,6 +35,13 @@ const HowWeWorkGrid = styled.div`
   }
 `;
 
+const ImageContainer = styled(Flex)`
+  order: -1;
+  ${getMediaQueryMinWidth('md')} {
+    order: 2;
+  } ;
+`;
+
 export function HowWeWork() {
   const atLeastMd = useMediaQuery(BREAKPOINT_STRINGS.md);
   return (
@@ -101,7 +108,11 @@ export function HowWeWork() {
             agencies engaged and perform better.
           </Text>
         </Flex>
-        <Flex h="100%" justify={{ base: 'center', md: 'flex-end' }}>
+        <ImageContainer
+          h="100%"
+          justify={{ base: 'center', md: 'flex-end' }}
+          mih={224}
+        >
           <Image
             alt=""
             fill
@@ -111,7 +122,7 @@ export function HowWeWork() {
               objectFit: 'contain',
             }}
           />
-        </Flex>
+        </ImageContainer>
       </HowWeWorkGrid>
     </>
   );

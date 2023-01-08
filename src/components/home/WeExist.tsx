@@ -30,7 +30,7 @@ const WeExistImage = styled(Image)`
   ${getMediaQueryMinWidth('md')} {
     right: 0;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translate(20%, -70%);
   }
 `;
 
@@ -108,7 +108,7 @@ export function WeExist() {
           alt=""
           height={atLeastMd ? 292 : 104}
           role="presentation"
-          src={atLeastMd ? '/mushroom_circle.png' : '/wave_circle.png'}
+          src="/mushroom_circle.png"
           width={atLeastMd ? 292 : 104}
         />
         <Title fw="bold" order={1} pos="relative" size={atLeastMd ? 72 : 32}>
