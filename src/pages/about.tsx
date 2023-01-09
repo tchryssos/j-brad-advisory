@@ -67,20 +67,21 @@ function About() {
         <AboutPaper
           sx={{
             margin: {
-              base: pxToRem(20),
+              xs: pxToRem(20),
               md: pxToRem(40),
             },
             padding: {
-              base: pxToRem(20),
+              xs: pxToRem(20),
               md: pxToRem(40),
             },
             borderRadius: '16px',
           }}
         >
           <Box
-            flexDirection={{ base: 'column', md: 'row' }}
-            gap={20}
-            justifyContent={{ base: 'flex-start', md: 'space-between' }}
+            display="flex"
+            flexDirection={{ xs: 'column', md: 'row' }}
+            gap={2.25}
+            justifyContent={{ xs: 'flex-start', md: 'space-between' }}
           >
             <Typography fontSize={32} variant="h1">
               About Joanne Bradford
@@ -92,7 +93,7 @@ function About() {
               <ArrowIcon />
             </AboutLink>
           </Box>
-          <Box flexDirection="column" gap={16} mt={20}>
+          <Box flexDirection="column" gap={2} mt={2.25}>
             <Typography>
               Experienced Operating Executive and independent board member with
               a demonstrated track record in technology, media and financial

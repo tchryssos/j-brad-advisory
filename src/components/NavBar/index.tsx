@@ -20,10 +20,11 @@ const LogoLink = styled(Link)`
   stroke: none;
   padding: 4px 8px;
   display: inline-flex;
+  width: fit-content;
   :hover,
   :active {
     stroke: none;
-    fill: ${({ theme }) => theme.palette.text.primary};
+    fill: ${({ theme }) => theme.palette.common.white};
     background-color: ${({ theme }) => theme.palette.primary.dark};
   }
 `;

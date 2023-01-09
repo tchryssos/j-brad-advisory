@@ -109,7 +109,7 @@ export function WeExist() {
       display="flex"
       flexDirection="column"
       justifyContent="center"
-      mt={{ base: 24, lg: 100 }}
+      mt={{ xs: pxToRem(24), lg: pxToRem(100) }}
       position="relative"
       px={gutterSize}
       sx={{

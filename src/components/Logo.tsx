@@ -14,9 +14,11 @@ const Path = styled('path')`
 `;
 
 const SvgWrapper = styled(SvgBase)`
-  width: fit-content;
+  /* I would leave this to auto, but safari has issues with non-specific SVG widths */
+  width: ${pxToRem(105)};
   height: ${pxToRem(26)};
   ${getMediaQueryMinWidth('md')} {
+    width: ${pxToRem(164)};
     height: ${pxToRem(40)};
   }
 `;

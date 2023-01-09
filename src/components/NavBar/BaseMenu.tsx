@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 import { ABOUT_ROUTE, HOME_ROUTE } from '~/constants/routing';
 import { getMediaQueryMinWidth } from '~/constants/theme';
+import { useGetGutterSize } from '~/logic/hooks/layout';
 import { pxToRem } from '~/logic/util/styles';
 
 import { CloseIcon } from '../icons/CloseIcon';
@@ -59,10 +60,10 @@ const IconButton = styled(MUIIconButton)`
   }
 `;
 
-const InnerIconButton = styled(IconButton)`
+const InnerIconButton = styled(IconButton)<{ gutter: string }>`
   position: absolute;
   top: ${pxToRem(16)};
-  right: ${pxToRem(16)};
+  right: ${({ gutter }) => gutter};
 `;
 
 const menuId = 'base-menu-id';
@@ -94,6 +95,7 @@ function LinkMenuItem({ href, title, onClick }: LinkMenuItemProps) {
 
 export function BaseMenu() {
   const [isOpen, setIsOpen] = useState(false);
+  const gutterSize = useGetGutterSize();
 
   // const [isScrollLocked, setScrollLocked] = useScrollLock();
 
@@ -118,7 +120,11 @@ export function BaseMenu() {
         <HamburgerIcon />
       </IconButton>
       <FullWrapper hidden={!isOpen} id={menuId}>
-        <InnerIconButton aria-controls={menuId} onClick={onClickClose}>
+        <InnerIconButton
+          aria-controls={menuId}
+          gutter={gutterSize}
+          onClick={onClickClose}
+        >
           <CloseIcon />
         </InnerIconButton>
         <Menu>
