@@ -1,4 +1,4 @@
-import { Flex } from '@mantine/core';
+import { Box } from '@mui/material';
 
 import { ColorWheel } from '~/components/ColorWheel';
 import { AreasOfFocus } from '~/components/home/AreasOfFocus';
@@ -12,11 +12,11 @@ function Home() {
   return (
     <Layout title="Home - J. Bradford Advisory">
       <WeExist />
-      <Flex flexDirection="column" pos="relative">
+      <Box display="flex" flexDirection="column" position="relative">
         <ColorWheel />
         <AreasOfFocus />
         <Pillars />
-      </Flex>
+      </Box>
       <WorkedWith />
       <HowWeWork />
     </Layout>

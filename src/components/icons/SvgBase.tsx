@@ -1,6 +1,6 @@
 import { styled } from '@mui/material';
 
-const Svg = styled.svg`
+const Svg = styled('svg')`
   height: 100%;
   width: 100%;
 `;

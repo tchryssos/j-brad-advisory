@@ -1,7 +1,7 @@
 import { styled } from '@mui/material';
 import { Head, Html, Main, NextScript } from 'next/document';
 
-const Body = styled.body`
+const Body = styled('body')`
   overscroll-behavior: none;
 `;
 

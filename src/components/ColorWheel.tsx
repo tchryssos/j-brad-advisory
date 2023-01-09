@@ -1,10 +1,10 @@
-import { styled } from '@mui/material';
+import { styled, useMediaQuery } from '@mui/material';
 import throttle from 'lodash.throttle';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
 import { WheelSize } from '~/constants/images';
-import { pxToRem } from '~/logic/util/styles';
+import { BREAKPOINT_STRINGS } from '~/constants/theme';
 
 interface WheelImageProps {
   rotationDeg: number;
@@ -20,6 +20,7 @@ const WheelImage = styled(Image)<WheelImageProps>`
 
 export function ColorWheel() {
   const scrollTopRef = useRef(globalThis.window?.scrollY || 0);
+  const atLeastMd = useMediaQuery(BREAKPOINT_STRINGS.md);
 
   const [rotationDeg, setRotationDeg] = useState(0);
 
@@ -45,19 +46,11 @@ export function ColorWheel() {
   return (
     <WheelImage
       alt=""
+      height={atLeastMd ? WheelSize.md : WheelSize.base}
       role="presentation"
       rotationDeg={rotationDeg}
       src="/color_wheel.png"
-      sx={{
-        height: {
-          base: pxToRem(WheelSize.base),
-          md: pxToRem(WheelSize.md),
-        },
-        width: {
-          base: pxToRem(WheelSize.base),
-          md: pxToRem(WheelSize.md),
-        },
-      }}
+      width={atLeastMd ? WheelSize.md : WheelSize.base}
     />
   );
 }

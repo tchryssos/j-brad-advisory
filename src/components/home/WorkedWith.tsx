@@ -1,8 +1,8 @@
-import { Flex, Title } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
+import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
 import Image from 'next/image';
 
 import { BREAKPOINT_STRINGS } from '~/constants/theme';
+import { pxToRem } from '~/logic/util/styles';
 
 import { ColorExtender } from '../ColorExtender';
 
@@ -57,23 +57,34 @@ interface WorkedBlockProps {
 
 function WorkedBlock({ logos, title, i }: WorkedBlockProps) {
   const atLeastMd = useMediaQuery(BREAKPOINT_STRINGS.md);
+  const theme = useTheme();
 
   return (
-    <Flex
+    <Box
       alignItems="center"
-      bg="purple.8"
+      bgcolor={theme.palette.primary.dark}
+      display="flex"
       flexDirection="column"
-      justify="center"
+      justifyContent="center"
       pb={40}
-      pos="relative"
+      position="relative"
       pt={i === 1 ? 0 : 40}
-      w="100%"
+      width="100%"
     >
-      <ColorExtender colorTuple={['purple', 8]} />
-      <Title color="gray.0" mb={40} order={2} size={atLeastMd ? 20 : 18}>
+      <ColorExtender color={theme.palette.primary.dark} />
+      <Typography
+        mb={40}
+        sx={{
+          fontSize: {
+            xs: pxToRem(18),
+            md: pxToRem(20),
+          },
+        }}
+        variant="h2"
+      >
         {title}
-      </Title>
-      <Flex flexDirection={atLeastMd ? 'row' : 'column'}>
+      </Typography>
+      <Box display="flex" flexDirection={atLeastMd ? 'row' : 'column'}>
         {logos.map((logo) => (
           <Image
             alt={logo.alt}
@@ -83,8 +94,8 @@ function WorkedBlock({ logos, title, i }: WorkedBlockProps) {
             width={200}
           />
         ))}
-      </Flex>
-    </Flex>
+      </Box>
+    </Box>
   );
 }
 

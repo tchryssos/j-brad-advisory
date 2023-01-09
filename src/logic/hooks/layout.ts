@@ -1,4 +1,4 @@
-import { useMediaQuery } from '@mantine/hooks';
+import { useMediaQuery } from '@mui/material';
 
 import { BREAKPOINT_STRINGS } from '~/constants/theme';
 

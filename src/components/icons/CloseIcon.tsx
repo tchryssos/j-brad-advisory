@@ -8,7 +8,7 @@ interface LogoProps {
   className?: string;
 }
 
-const Path = styled.path`
+const Path = styled('path')`
   fill: none;
   stroke: inherit;
   stroke-width: 2;

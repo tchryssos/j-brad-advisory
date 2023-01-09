@@ -1,8 +1,13 @@
-import { Flex, SimpleGrid, Text, Title } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
-import { styled } from '@mui/material';
+import {
+  Box,
+  Grid,
+  styled,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
 
-import { BREAKPOINT_STRINGS, BREAKPOINT_VALUES } from '~/constants/theme';
+import { BREAKPOINT_STRINGS } from '~/constants/theme';
 import { useGetGutterSize } from '~/logic/hooks/layout';
 
 import { ColorExtender } from '../ColorExtender';
@@ -34,12 +39,12 @@ const pillarGroups = [
   },
 ];
 
-const PillarGrid = styled(SimpleGrid)`
+const PillarGrid = styled(Grid)`
   column-gap: 32px;
   row-gap: 16px;
 `;
 
-const PillarItem = styled.div`
+const PillarItem = styled('div')`
   display: grid;
   gap: 20px;
   grid-template-rows: auto 1fr;
@@ -52,42 +57,43 @@ const PillarPicture = styled(Image)`
 `;
 
 export function Pillars() {
-  const atLeastSm = useMediaQuery(BREAKPOINT_STRINGS.sm);
   const atLeastMd = useMediaQuery(BREAKPOINT_STRINGS.md);
   const gutterSize = useGetGutterSize();
+  const theme = useTheme();
 
   return (
-    <Flex
-      bg="cyan.0"
+    <Box
+      bgcolor={theme.palette.common.white}
+      display="flex"
       flexDirection="column"
       gap={20}
       mt={atLeastMd ? 68 : 40}
       pb={80}
-      pos="relative"
+      position="relative"
       pt={atLeastMd ? 154 : 80}
       px={gutterSize}
     >
-      <ColorExtender colorTuple={['cyan', 0]} />
-      <Title order={2} size={atLeastSm ? 20 : 18}>
+      <ColorExtender color={theme.palette.common.white} />
+      <Typography
+        sx={{
+          fontSize: {
+            xs: 18,
+            sm: 20,
+          },
+        }}
+        variant="h2"
+      >
         Our pillars
-      </Title>
+      </Typography>
       <PillarGrid
-        breakpoints={[
-          {
-            maxWidth: BREAKPOINT_VALUES.sm - 1,
-            cols: 1,
-          },
-          {
-            minWidth: BREAKPOINT_VALUES.sm,
-            cols: 2,
-          },
-          {
-            minWidth: BREAKPOINT_VALUES.md,
-            cols: 4,
-          },
-        ]}
-        cols={1}
         p={0}
+        sx={{
+          gridTemplateColumns: {
+            xs: '1fr',
+            sm: '1fr 1fr',
+            md: '1fr 1fr 1fr 1fr',
+          },
+        }}
       >
         {pillarGroups.map((pillarGroup) => (
           <PillarItem key={pillarGroup.title}>
@@ -100,15 +106,23 @@ export function Pillars() {
                 objectFit: 'cover',
               }}
             />
-            <Flex flexDirection="column" gap={20} h="100%">
-              <Title order={3} size={atLeastMd ? 20 : 18}>
+            <Box display="flex" flexDirection="column" gap={20} height="100%">
+              <Typography
+                sx={{
+                  fontSize: {
+                    xs: 18,
+                    md: 20,
+                  },
+                }}
+                variant="h3"
+              >
                 {pillarGroup.title}
-              </Title>
-              <Text>{pillarGroup.description}</Text>
-            </Flex>
+              </Typography>
+              <Typography>{pillarGroup.description}</Typography>
+            </Box>
           </PillarItem>
         ))}
       </PillarGrid>
-    </Flex>
+    </Box>
   );
 }

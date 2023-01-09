@@ -1,12 +1,13 @@
-import { Flex, SimpleGrid, Text, Title } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
-import { styled } from '@mui/material';
-
 import {
-  BREAKPOINT_STRINGS,
-  BREAKPOINT_VALUES,
-  getMediaQueryMinWidth,
-} from '~/constants/theme';
+  Box,
+  Grid,
+  styled,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
+
+import { BREAKPOINT_STRINGS, getMediaQueryMinWidth } from '~/constants/theme';
 import { useGetGutterSize } from '~/logic/hooks/layout';
 
 import { ColorExtender } from '../ColorExtender';
@@ -25,13 +26,13 @@ const hFontSize = {
 const ySpacing = 80;
 const imageDividerHeight = 50;
 
-const HowWeWorkGrid = styled(Flex)`
+const HowWeWorkGrid = styled(Box)`
   display: grid;
   gap: 110px;
   grid-template-columns: 1fr;
   background-color: ${({ theme }) => theme.palette.primary.main};
   gap: 20px;
-  color: ${({ theme }) => theme.palette.gray[0]};
+  color: ${({ theme }) => theme.palette.common.white};
   ${getMediaQueryMinWidth('md')} {
     grid-template-columns: 1fr 1fr;
     gap: 110px;
@@ -49,20 +50,40 @@ const ImageDivider = styled(Image)`
   }
 `;
 
-const JumboColorDivider = styled.div`
+const JumboColorDivider = styled('div')`
   width: 100%;
   height: ${imageDividerHeight}px;
   display: none;
   position: relative;
-  background-color: ${({ theme }) => theme.palette.orange[4]};
+  background-color: ${({ theme }) => theme.palette.warning.main};
   @media only screen and (min-width: 1800px) {
     display: block;
   }
 `;
 
+interface WorkTextProps {
+  children: string;
+}
+
+function WorkText({ children }: WorkTextProps) {
+  return (
+    <Typography
+      sx={{
+        fontSize: {
+          xs: pFontSize.base,
+          md: pFontSize.md,
+        },
+      }}
+    >
+      {children}
+    </Typography>
+  );
+}
+
 export function HowWeWork() {
   const atLeastMd = useMediaQuery(BREAKPOINT_STRINGS.md);
-  const atLeastSm = useMediaQuery(BREAKPOINT_STRINGS.sm);
+  // const atLeastSm = useMediaQuery(BREAKPOINT_STRINGS.sm);
+  const theme = useTheme();
   const gutterSize = useGetGutterSize();
   return (
     <>
@@ -77,67 +98,94 @@ export function HowWeWork() {
         }}
       />
       <JumboColorDivider>
-        <ColorExtender colorTuple={['orange', 4]} />
+        <ColorExtender color={theme.palette.warning.main} />
       </JumboColorDivider>
-      <SimpleGrid
-        breakpoints={[{ minWidth: BREAKPOINT_VALUES.sm, spacing: 20, cols: 2 }]}
-        cols={1}
+      <Grid
+        gap={20}
         my={ySpacing}
         px={gutterSize}
         spacing={40}
+        sx={{
+          gridTemplateColumns: {
+            xs: '1fr',
+            sm: '1fr 1fr',
+          },
+        }}
       >
-        <Title order={2} size={atLeastSm ? hFontSize.sm : hFontSize.base}>
+        <Typography
+          sx={{
+            fontSize: {
+              xs: hFontSize.base,
+              sm: hFontSize.sm,
+            },
+          }}
+          variant="h2"
+        >
           We work with C level executives that need sounding boards and
           objective feedback.
-        </Title>
-        <Flex flexDirection="column" gap={{ base: 20, md: 30 }}>
-          <Text size={atLeastMd ? pFontSize.md : pFontSize.base}>
+        </Typography>
+        <Box display="flex" flexDirection="column" gap={{ xs: 20, md: 30 }}>
+          <WorkText>
             We build actionable plans to drive results in any area of your
             business.
-          </Text>
-          <Text size={atLeastMd ? pFontSize.md : pFontSize.base}>
+          </WorkText>
+          <WorkText>
             We refresh your sales, marketing or comms strategy
-          </Text>
-          <Text size={atLeastMd ? pFontSize.md : pFontSize.base}>
+          </WorkText>
+          <WorkText>
             We help make your other agencies and partners more effective.
-          </Text>
-        </Flex>
-      </SimpleGrid>
-      <Flex pos="relative">
-        <ColorExtender colorTuple={['blue', 6]} />
-        <HowWeWorkGrid pos="relative" px={gutterSize} py={ySpacing}>
-          <Flex flexDirection="column" gap={30}>
-            <Title order={2} size={atLeastSm ? hFontSize.sm : hFontSize.base}>
+          </WorkText>
+        </Box>
+      </Grid>
+      <Box display="flex" position="relative">
+        <ColorExtender color={theme.palette.primary.main} />
+        <HowWeWorkGrid
+          display="flex"
+          position="relative"
+          px={gutterSize}
+          py={ySpacing}
+        >
+          <Box display="flex" flexDirection="column" gap={30}>
+            <Typography
+              sx={{
+                fontSize: {
+                  xs: hFontSize.base,
+                  sm: hFontSize.sm,
+                },
+              }}
+              variant="h2"
+            >
               How we work
-            </Title>
-            <Text size={atLeastMd ? pFontSize.md : pFontSize.base}>
+            </Typography>
+            <WorkText>
               You can hire us for a few hours or a few months to help get the
               strategy and plans moving.
-            </Text>
-            <Text size={atLeastMd ? pFontSize.md : pFontSize.base}>
+            </WorkText>
+            <WorkText>
               Companies spend too much time doubting and questioning plans vs
               reaching for the most aggressive goal they can reach. When budgets
               are small, impact needs to be high. Creativity and strategic
               thinking must work hand in hand to hand to breakthrough vs accept
               a status quo.
-            </Text>
-            <Text size={atLeastMd ? pFontSize.md : pFontSize.base}>
+            </WorkText>
+            <WorkText>
               Money and resources don&apos;t guarantee results, a clear headed
               strategy and plan will win more often than a big budget. We have
               proof and case studies from companies like Honey, Sofi, Pinterest
               to prove it.
-            </Text>
-            <Text size={atLeastMd ? pFontSize.md : pFontSize.base}>
+            </WorkText>
+            <WorkText>
               JBrad Advisors will help leaders and teams get excited about what
               they can do quickly to drive momentum, keep partnerships and
               agencies engaged and perform better.
-            </Text>
-          </Flex>
+            </WorkText>
+          </Box>
           {atLeastMd && (
-            <Flex
-              h="100%"
-              justify={{ base: 'center', md: 'flex-end' }}
-              mih={224}
+            <Box
+              display="flex"
+              height="100%"
+              justifyContent={{ xs: 'center', md: 'flex-end' }}
+              minHeight={224}
             >
               <Image
                 alt=""
@@ -148,10 +196,10 @@ export function HowWeWork() {
                   objectFit: 'contain',
                 }}
               />
-            </Flex>
+            </Box>
           )}
         </HowWeWorkGrid>
-      </Flex>
+      </Box>
     </>
   );
 }
