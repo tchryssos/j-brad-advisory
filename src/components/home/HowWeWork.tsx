@@ -1,6 +1,5 @@
 import {
   Box,
-  Grid,
   styled,
   Typography,
   useMediaQuery,
@@ -146,7 +145,7 @@ export function HowWeWork() {
           px={gutterSize}
           py={ySpacing}
         >
-          <Box display="flex" flexDirection="column" gap={30}>
+          <Box display="flex" flexDirection="column" gap={pxToRem(30)}>
             <Typography
               sx={{
                 fontSize: {
@@ -186,7 +185,7 @@ export function HowWeWork() {
               display="flex"
               height="100%"
               justifyContent={{ xs: 'center', md: 'flex-end' }}
-              minHeight={224}
+              minHeight={pxToRem(224)}
             >
               <Image
                 alt=""

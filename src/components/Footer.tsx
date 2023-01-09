@@ -1,4 +1,4 @@
-import { Box, Grid, styled, Typography } from '@mui/material';
+import { Box, Grid, styled, Typography, useTheme } from '@mui/material';
 
 import { EMAIL_LINK } from '~/constants/links';
 import { CONTAINER_WIDTH, getMediaQueryMinWidth } from '~/constants/theme';
@@ -31,15 +31,20 @@ const EmailLink = styled(Link)`
 
 export function Footer() {
   const gutterSize = useGetGutterSize();
+  const theme = useTheme();
   return (
-    <Box display="flex" justifyContent="center">
+    <Box
+      bgcolor={theme.palette.primary.dark}
+      display="flex"
+      justifyContent="center"
+    >
       <FooterWrapper
         alignItems="flex-end"
         gridTemplateColumns={{ _: '1fr', md: '5fr 7fr' }}
         m={0}
         maxWidth={CONTAINER_WIDTH}
         px={gutterSize}
-        py={{ base: 40, md: 60 }}
+        py={{ xs: pxToRem(40), md: pxToRem(60) }}
         width="100%"
       >
         <Box
@@ -51,7 +56,7 @@ export function Footer() {
             },
           }}
         >
-          <Box display="flex" flexDirection="column" gap={20}>
+          <Box display="flex" flexDirection="column" gap={2.25}>
             <Typography
               component="p"
               sx={{
@@ -63,15 +68,14 @@ export function Footer() {
             >
               If you need help on a project, a strategic plan or a team...
             </Typography>
-            <Box display="flex" flexDirection="column" gap={8}>
+            <Box display="flex" flexDirection="column" gap={1}>
               <Typography
                 component="h2"
-                sx={{
-                  fontSize: {
-                    xs: pxToRem(32),
-                    md: pxToRem(40),
-                  },
+                fontSize={{
+                  xs: pxToRem(32),
+                  md: pxToRem(40),
                 }}
+                fontWeight={600}
               >
                 Email us at
               </Typography>
