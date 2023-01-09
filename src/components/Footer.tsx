@@ -1,4 +1,4 @@
-import { Box, Grid, styled, Typography, useTheme } from '@mui/material';
+import { Box, styled, Typography, useTheme } from '@mui/material';
 
 import { EMAIL_LINK } from '~/constants/links';
 import { CONTAINER_WIDTH, getMediaQueryMinWidth } from '~/constants/theme';
@@ -8,7 +8,7 @@ import { pxToRem } from '~/logic/util/styles';
 import { Link } from './Link';
 import { Logo } from './Logo';
 
-const FooterWrapper = styled(Grid)`
+const FooterWrapper = styled(Box)`
   color: ${({ theme }) => theme.palette.common.white};
   fill: ${({ theme }) => theme.palette.common.white};
 `;
@@ -40,7 +40,8 @@ export function Footer() {
     >
       <FooterWrapper
         alignItems="flex-end"
-        gridTemplateColumns={{ _: '1fr', md: '5fr 7fr' }}
+        display="grid"
+        gridTemplateColumns={{ xs: '1fr', md: '7fr 5fr' }}
         m={0}
         maxWidth={CONTAINER_WIDTH}
         px={gutterSize}
@@ -48,13 +49,11 @@ export function Footer() {
         width="100%"
       >
         <Box
-          p={0}
-          sx={{
-            order: {
-              xs: 1,
-              md: 2,
-            },
+          order={{
+            xs: 1,
+            md: 2,
           }}
+          p={0}
         >
           <Box display="flex" flexDirection="column" gap={2.25}>
             <Typography
@@ -86,17 +85,15 @@ export function Footer() {
           </Box>
         </Box>
         <Box
-          p={0}
-          sx={{
-            order: {
-              xs: 2,
-              md: 1,
-            },
-            mt: {
-              xs: pxToRem(100),
-              md: 0,
-            },
+          mt={{
+            xs: pxToRem(100),
+            md: 0,
           }}
+          order={{
+            xs: 2,
+            md: 1,
+          }}
+          p={0}
         >
           <Logo />
         </Box>

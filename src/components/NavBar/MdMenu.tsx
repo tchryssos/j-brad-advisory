@@ -31,7 +31,7 @@ const MdMenuWrapper = styled(Box)`
 
 export function MdMenu() {
   return (
-    <MdMenuWrapper alignItems="center" display="flex" gap={40}>
+    <MdMenuWrapper alignItems="center" display="flex" gap={5}>
       <Link activeUnderline href={HOME_ROUTE}>
         Home
       </Link>
