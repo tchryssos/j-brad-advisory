@@ -1,4 +1,5 @@
 import { createTheme } from '@mui/material';
+import { Typography } from '@mui/material/styles/createTypography';
 
 import { BreakpointSize, BreakpointString } from '~/typings/theme';
 
@@ -69,8 +70,14 @@ const breakpoints = {
   },
 };
 
-const typography = {
+const typography: Partial<Typography> = {
   fontFamily: 'Poppins, sans-serif',
+  h2: {
+    fontWeight: 600,
+  },
+  h3: {
+    fontWeight: 600,
+  },
 };
 
 export const THEME = createTheme({

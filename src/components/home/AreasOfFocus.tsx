@@ -33,6 +33,14 @@ const WheelSpaceGrid = styled('div')`
 
 const FocusList = styled(List)`
   list-style: none;
+  padding-top: 0;
+  ${({ theme }) => theme.breakpoints.up('md')} {
+    padding-top: ${pxToRem(40)};
+  }
+  li {
+    padding: 0;
+    margin: 0;
+  }
 `;
 
 // Hacky fake list item to even out lists
@@ -49,27 +57,12 @@ export function AreasOfFocus() {
     <WheelSpaceGrid>
       {/* This empty div creates space for the color wheel */}
       <div />
-      <FocusList
-        sx={{
-          paddingTop: {
-            xs: 0,
-            md: pxToRem(40),
-          },
-        }}
-      >
+      <FocusList>
         <Box
           display="flex"
+          flexDirection={{ xs: 'column', sm: 'row' }}
+          justifyContent={{ xs: 'space-between', sm: 'space-around' }}
           maxWidth={pxToRem(712)}
-          sx={{
-            flexDirection: {
-              xs: 'column',
-              sm: 'row',
-            },
-            justifyContent: {
-              xs: 'space-between',
-              sm: 'space-around',
-            },
-          }}
         >
           {focusAreas.map((focusArea, i) => (
             <Box
@@ -80,13 +73,8 @@ export function AreasOfFocus() {
             >
               {i === 0 && (
                 <Typography
-                  mb={20}
-                  sx={{
-                    fontSize: {
-                      xs: pxToRem(18),
-                      sm: pxToRem(20),
-                    },
-                  }}
+                  fontSize={{ xs: pxToRem(18), sm: pxToRem(20) }}
+                  mb={2.25}
                   variant="h2"
                 >
                   Our focus areas
@@ -96,13 +84,8 @@ export function AreasOfFocus() {
                 <ListItem key={focus}>
                   <Typography
                     component="span"
+                    fontSize={{ xs: pxToRem(18), md: pxToRem(20) }}
                     lineHeight="200%"
-                    sx={{
-                      fontSize: {
-                        xs: pxToRem(18),
-                        md: pxToRem(20),
-                      },
-                    }}
                   >
                     {focus}
                   </Typography>

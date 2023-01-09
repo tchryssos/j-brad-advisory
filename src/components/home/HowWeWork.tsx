@@ -9,6 +9,7 @@ import {
 
 import { BREAKPOINT_STRINGS, getMediaQueryMinWidth } from '~/constants/theme';
 import { useGetGutterSize } from '~/logic/hooks/layout';
+import { pxToRem } from '~/logic/util/styles';
 
 import { ColorExtender } from '../ColorExtender';
 import { Image } from '../Image';
@@ -23,19 +24,18 @@ const hFontSize = {
   sm: 32,
 };
 
-const ySpacing = 80;
+const ySpacing = pxToRem(80);
 const imageDividerHeight = 50;
 
 const HowWeWorkGrid = styled(Box)`
   display: grid;
-  gap: 110px;
+  gap: ${pxToRem(110)};
   grid-template-columns: 1fr;
   background-color: ${({ theme }) => theme.palette.primary.main};
   gap: 20px;
   color: ${({ theme }) => theme.palette.common.white};
   ${getMediaQueryMinWidth('md')} {
     grid-template-columns: 1fr 1fr;
-    gap: 110px;
   }
 `;
 
@@ -100,31 +100,32 @@ export function HowWeWork() {
       <JumboColorDivider>
         <ColorExtender color={theme.palette.warning.main} />
       </JumboColorDivider>
-      <Grid
-        gap={20}
+      <Box
+        display="grid"
+        gap={2.25}
+        gridTemplateColumns={{
+          xs: '1fr',
+          sm: '1fr 1fr',
+        }}
         my={ySpacing}
         px={gutterSize}
-        spacing={40}
-        sx={{
-          gridTemplateColumns: {
-            xs: '1fr',
-            sm: '1fr 1fr',
-          },
-        }}
       >
         <Typography
-          sx={{
-            fontSize: {
-              xs: hFontSize.base,
-              sm: hFontSize.sm,
-            },
+          fontSize={{
+            xs: hFontSize.base,
+            sm: hFontSize.sm,
           }}
+          mb={2.25}
           variant="h2"
         >
           We work with C level executives that need sounding boards and
           objective feedback.
         </Typography>
-        <Box display="flex" flexDirection="column" gap={{ xs: 20, md: 30 }}>
+        <Box
+          display="flex"
+          flexDirection="column"
+          gap={{ xs: pxToRem(20), md: pxToRem(30) }}
+        >
           <WorkText>
             We build actionable plans to drive results in any area of your
             business.
@@ -136,7 +137,7 @@ export function HowWeWork() {
             We help make your other agencies and partners more effective.
           </WorkText>
         </Box>
-      </Grid>
+      </Box>
       <Box display="flex" position="relative">
         <ColorExtender color={theme.palette.primary.main} />
         <HowWeWorkGrid

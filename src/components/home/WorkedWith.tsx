@@ -66,20 +66,19 @@ function WorkedBlock({ logos, title, i }: WorkedBlockProps) {
       display="flex"
       flexDirection="column"
       justifyContent="center"
-      pb={40}
+      pb={5}
       position="relative"
-      pt={i === 1 ? 0 : 40}
+      pt={i === 1 ? 0 : 5}
       width="100%"
     >
       <ColorExtender color={theme.palette.primary.dark} />
       <Typography
-        mb={40}
-        sx={{
-          fontSize: {
-            xs: pxToRem(18),
-            md: pxToRem(20),
-          },
+        color={theme.palette.common.white}
+        fontSize={{
+          xs: pxToRem(18),
+          md: pxToRem(20),
         }}
+        mb={5}
         variant="h2"
       >
         {title}

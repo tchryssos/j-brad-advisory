@@ -1,14 +1,7 @@
-import {
-  Box,
-  Grid,
-  styled,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from '@mui/material';
+import { Box, styled, Typography, useTheme } from '@mui/material';
 
-import { BREAKPOINT_STRINGS } from '~/constants/theme';
 import { useGetGutterSize } from '~/logic/hooks/layout';
+import { pxToRem } from '~/logic/util/styles';
 
 import { ColorExtender } from '../ColorExtender';
 import { Image } from '../Image';
@@ -39,9 +32,19 @@ const pillarGroups = [
   },
 ];
 
-const PillarGrid = styled(Grid)`
-  column-gap: 32px;
-  row-gap: 16px;
+const PillarGrid = styled('div')`
+  display: grid;
+  column-gap: ${pxToRem(32)};
+  row-gap: ${pxToRem(16)};
+  grid-template-columns: 1fr;
+
+  ${({ theme }) => theme.breakpoints.up('sm')} {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  ${({ theme }) => theme.breakpoints.up('md')} {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 `;
 
 const PillarItem = styled('div')`
@@ -57,20 +60,19 @@ const PillarPicture = styled(Image)`
 `;
 
 export function Pillars() {
-  const atLeastMd = useMediaQuery(BREAKPOINT_STRINGS.md);
   const gutterSize = useGetGutterSize();
   const theme = useTheme();
 
   return (
     <Box
-      bgcolor={theme.palette.common.white}
+      bgcolor={theme.palette.primary.light}
       display="flex"
       flexDirection="column"
-      gap={20}
-      mt={atLeastMd ? 68 : 40}
-      pb={80}
+      gap={2.25}
+      mt={{ xs: pxToRem(40), md: pxToRem(68) }}
+      pb={10}
       position="relative"
-      pt={atLeastMd ? 154 : 80}
+      pt={{ xs: pxToRem(80), md: pxToRem(154) }}
       px={gutterSize}
     >
       <ColorExtender color={theme.palette.common.white} />
@@ -85,16 +87,7 @@ export function Pillars() {
       >
         Our pillars
       </Typography>
-      <PillarGrid
-        p={0}
-        sx={{
-          gridTemplateColumns: {
-            xs: '1fr',
-            sm: '1fr 1fr',
-            md: '1fr 1fr 1fr 1fr',
-          },
-        }}
-      >
+      <PillarGrid>
         {pillarGroups.map((pillarGroup) => (
           <PillarItem key={pillarGroup.title}>
             <PillarPicture
@@ -106,13 +99,11 @@ export function Pillars() {
                 objectFit: 'cover',
               }}
             />
-            <Box display="flex" flexDirection="column" gap={20} height="100%">
+            <Box display="flex" flexDirection="column" gap={2.25} height="100%">
               <Typography
-                sx={{
-                  fontSize: {
-                    xs: 18,
-                    md: 20,
-                  },
+                fontSize={{
+                  xs: pxToRem(18),
+                  md: pxToRem(20),
                 }}
                 variant="h3"
               >

@@ -34,10 +34,11 @@ export function NavBar() {
     <Nav>
       <Box
         alignItems="center"
+        display="flex"
         justifyContent="space-between"
         maxWidth={pxToRem(CONTAINER_WIDTH)}
         px={gutterSize}
-        py={20}
+        py={2.25}
         width="100%"
       >
         <LogoLink href={HOME_ROUTE} title="J. Bradford Advisory Home">
