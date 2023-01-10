@@ -8,7 +8,11 @@ import {
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-import { BREAKPOINT_STRINGS, getMediaQueryMinWidth } from '~/constants/theme';
+import {
+  BREAKPOINT_STRINGS,
+  CONTAINER_WIDTH,
+  getMediaQueryMinWidth,
+} from '~/constants/theme';
 import { useGetGutterSize } from '~/logic/hooks/layout';
 import { pxToRem } from '~/logic/util/styles';
 
@@ -108,16 +112,13 @@ export function WeExist() {
     <Box
       display="flex"
       flexDirection="column"
+      height={{ xs: pxToRem(232), sm: pxToRem(384) }}
       justifyContent="center"
+      // maxWidth={CONTAINER_WIDTH}
       mt={{ xs: pxToRem(24), lg: pxToRem(100) }}
       position="relative"
       px={gutterSize}
-      sx={{
-        height: {
-          xs: pxToRem(232),
-          sm: pxToRem(384),
-        },
-      }}
+      width="100%"
     >
       <MdContainer atLeastMd={atLeastMd}>
         <WeExistImage
@@ -128,14 +129,12 @@ export function WeExist() {
           width={imageSize}
         />
         <Typography
+          fontSize={{
+            xs: pxToRem(32),
+            md: pxToRem(72),
+          }}
           fontWeight="bold"
           position="relative"
-          sx={{
-            fontSize: {
-              xs: pxToRem(32),
-              md: pxToRem(72),
-            },
-          }}
           variant="h1"
         >
           We exist to

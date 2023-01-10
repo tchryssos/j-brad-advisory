@@ -4,6 +4,8 @@ import { WheelSize } from '~/constants/images';
 import { getMediaQueryMinWidth } from '~/constants/theme';
 import { pxToRem } from '~/logic/util/styles';
 
+import { MaxWidthContainer } from '../MaxWidthContainer';
+
 const focusAreas = [
   [
     'Strategic direction',
@@ -54,48 +56,50 @@ const FakeListItem = styled('div')`
 
 export function AreasOfFocus() {
   return (
-    <WheelSpaceGrid>
-      {/* This empty div creates space for the color wheel */}
-      <div />
-      <FocusList>
-        <Box
-          display="flex"
-          flexDirection={{ xs: 'column', sm: 'row' }}
-          justifyContent={{ xs: 'space-between', sm: 'space-around' }}
-          maxWidth={pxToRem(712)}
-        >
-          {focusAreas.map((focusArea, i) => (
-            <Box
-              display="flex"
-              flexDirection="column"
-              justifyContent="flex-end"
-              key={focusArea.join('-')}
-            >
-              {i === 0 && (
-                <Typography
-                  fontSize={{ xs: pxToRem(18), sm: pxToRem(20) }}
-                  mb={2.25}
-                  variant="h2"
-                >
-                  Our focus areas
-                </Typography>
-              )}
-              {focusArea.map((focus) => (
-                <ListItem key={focus}>
+    <MaxWidthContainer>
+      <WheelSpaceGrid>
+        {/* This empty div creates space for the color wheel */}
+        <div />
+        <FocusList>
+          <Box
+            display="flex"
+            flexDirection={{ xs: 'column', sm: 'row' }}
+            justifyContent={{ xs: 'space-between', sm: 'space-around' }}
+            maxWidth={pxToRem(712)}
+          >
+            {focusAreas.map((focusArea, i) => (
+              <Box
+                display="flex"
+                flexDirection="column"
+                justifyContent="flex-end"
+                key={focusArea.join('-')}
+              >
+                {i === 0 && (
                   <Typography
-                    component="span"
-                    fontSize={{ xs: pxToRem(18), md: pxToRem(20) }}
-                    lineHeight="200%"
+                    fontSize={{ xs: pxToRem(18), sm: pxToRem(20) }}
+                    mb={2.25}
+                    variant="h2"
                   >
-                    {focus}
+                    Our focus areas
                   </Typography>
-                </ListItem>
-              ))}
-              {i === 1 && <FakeListItem />}
-            </Box>
-          ))}
-        </Box>
-      </FocusList>
-    </WheelSpaceGrid>
+                )}
+                {focusArea.map((focus) => (
+                  <ListItem key={focus}>
+                    <Typography
+                      component="span"
+                      fontSize={{ xs: pxToRem(18), md: pxToRem(20) }}
+                      lineHeight="200%"
+                    >
+                      {focus}
+                    </Typography>
+                  </ListItem>
+                ))}
+                {i === 1 && <FakeListItem />}
+              </Box>
+            ))}
+          </Box>
+        </FocusList>
+      </WheelSpaceGrid>
+    </MaxWidthContainer>
   );
 }

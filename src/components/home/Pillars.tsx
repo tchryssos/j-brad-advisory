@@ -3,8 +3,8 @@ import { Box, styled, Typography, useTheme } from '@mui/material';
 import { useGetGutterSize } from '~/logic/hooks/layout';
 import { pxToRem } from '~/logic/util/styles';
 
-import { ColorExtender } from '../ColorExtender';
 import { Image } from '../Image';
+import { MaxWidthContainer } from '../MaxWidthContainer';
 
 const pillarGroups = [
   {
@@ -64,56 +64,61 @@ export function Pillars() {
   const theme = useTheme();
 
   return (
-    <Box
-      bgcolor={theme.palette.primary.light}
-      display="flex"
-      flexDirection="column"
-      gap={2.25}
-      mt={{ xs: pxToRem(40), md: pxToRem(68) }}
-      pb={10}
-      position="relative"
-      pt={{ xs: pxToRem(80), md: pxToRem(154) }}
-      px={gutterSize}
-    >
-      <ColorExtender color={theme.palette.common.white} />
-      <Typography
-        sx={{
-          fontSize: {
-            xs: 18,
-            sm: 20,
-          },
-        }}
-        variant="h2"
+    <MaxWidthContainer bgColor={theme.palette.primary.light}>
+      <Box
+        display="flex"
+        flexDirection="column"
+        gap={2.25}
+        mt={{ xs: pxToRem(40), md: pxToRem(68) }}
+        pb={10}
+        position="relative"
+        pt={{ xs: pxToRem(80), md: pxToRem(154) }}
+        px={gutterSize}
       >
-        Our pillars
-      </Typography>
-      <PillarGrid>
-        {pillarGroups.map((pillarGroup) => (
-          <PillarItem key={pillarGroup.title}>
-            <PillarPicture
-              alt=""
-              fill
-              role="presentation"
-              src={pillarGroup.src}
-              style={{
-                objectFit: 'cover',
-              }}
-            />
-            <Box display="flex" flexDirection="column" gap={2.25} height="100%">
-              <Typography
-                fontSize={{
-                  xs: pxToRem(18),
-                  md: pxToRem(20),
+        <Typography
+          sx={{
+            fontSize: {
+              xs: 18,
+              sm: 20,
+            },
+          }}
+          variant="h2"
+        >
+          Our pillars
+        </Typography>
+        <PillarGrid>
+          {pillarGroups.map((pillarGroup) => (
+            <PillarItem key={pillarGroup.title}>
+              <PillarPicture
+                alt=""
+                fill
+                role="presentation"
+                src={pillarGroup.src}
+                style={{
+                  objectFit: 'cover',
                 }}
-                variant="h3"
+              />
+              <Box
+                display="flex"
+                flexDirection="column"
+                gap={2.25}
+                height="100%"
               >
-                {pillarGroup.title}
-              </Typography>
-              <Typography>{pillarGroup.description}</Typography>
-            </Box>
-          </PillarItem>
-        ))}
-      </PillarGrid>
-    </Box>
+                <Typography
+                  fontSize={{
+                    xs: pxToRem(18),
+                    md: pxToRem(20),
+                  }}
+                  variant="h3"
+                >
+                  {pillarGroup.title}
+                </Typography>
+                <Typography>{pillarGroup.description}</Typography>
+              </Box>
+            </PillarItem>
+          ))}
+        </PillarGrid>
+      </Box>
+    </MaxWidthContainer>
   );
 }

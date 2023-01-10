@@ -16,16 +16,23 @@ export function Layout({ children, title }: LayoutProps) {
   return (
     <>
       <Head title={title} />
-      <NavBar />
       <Box
-        height="100%"
-        maxWidth={pxToRem(CONTAINER_WIDTH)}
-        overflow={{ _: 'hidden', xl: 'visible' }}
-        p={0}
+        alignItems="center"
+        display="flex"
+        flexDirection="column"
+        // width="100vw"
       >
+        <NavBar />
+        {/* <Box
+          height="100%"
+          maxWidth={pxToRem(CONTAINER_WIDTH)}
+          overflow={{ xs: 'hidden', xl: 'visible' }}
+          p={0}
+        > */}
         {children}
+        {/* </Box> */}
+        <Footer />
       </Box>
-      <Footer />
     </>
   );
 }
