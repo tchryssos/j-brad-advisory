@@ -5,7 +5,7 @@ const Svg = styled('svg')`
   width: 100%;
 `;
 
-export interface BaseSvgProps {
+interface BaseSvgProps {
   className?: string;
   viewBox?: string;
   title: string;
