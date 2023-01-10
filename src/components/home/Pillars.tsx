@@ -51,6 +51,11 @@ const PillarItem = styled('div')`
   display: grid;
   gap: 20px;
   grid-template-rows: auto 1fr;
+  ${({ theme }) => theme.breakpoints.up('md')} {
+    :nth-child(even) {
+      margin-top: ${pxToRem(100)};
+    }
+  }
 `;
 
 const PillarPicture = styled(Image)`

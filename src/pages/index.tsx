@@ -1,5 +1,3 @@
-import { Box } from '@mui/material';
-
 import { ColorWheel } from '~/components/ColorWheel';
 import { AreasOfFocus } from '~/components/home/AreasOfFocus';
 import { HowWeWork } from '~/components/home/HowWeWork';
@@ -12,11 +10,9 @@ function Home() {
   return (
     <Layout title="Home - J. Bradford Advisory">
       <WeExist />
-      <Box display="flex" flexDirection="column" position="relative">
-        <ColorWheel />
-        <AreasOfFocus />
-        <Pillars />
-      </Box>
+      <ColorWheel />
+      <AreasOfFocus />
+      <Pillars />
       <WorkedWith />
       <HowWeWork />
     </Layout>

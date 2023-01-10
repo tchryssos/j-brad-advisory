@@ -12,11 +12,18 @@ export function MaxWidthContainer({
   children,
 }: MaxWidthContainerProps) {
   return (
-    <Box bgcolor={bgColor} display="flex" justifyContent="center" width="100%">
+    <Box
+      bgcolor={bgColor}
+      display="flex"
+      height="100%"
+      justifyContent="center"
+      width="100%"
+    >
       <Box
         display="flex"
         flexDirection="column"
         maxWidth={CONTAINER_WIDTH}
+        position="relative"
         width="100%"
       >
         {children}

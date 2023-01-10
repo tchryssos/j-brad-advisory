@@ -8,11 +8,7 @@ import {
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-import {
-  BREAKPOINT_STRINGS,
-  CONTAINER_WIDTH,
-  getMediaQueryMinWidth,
-} from '~/constants/theme';
+import { BREAKPOINT_STRINGS, getMediaQueryMinWidth } from '~/constants/theme';
 import { useGetGutterSize } from '~/logic/hooks/layout';
 import { pxToRem } from '~/logic/util/styles';
 

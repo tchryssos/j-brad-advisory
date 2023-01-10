@@ -1,8 +1,5 @@
 import { Box } from '@mui/material';
 
-import { CONTAINER_WIDTH } from '~/constants/theme';
-import { pxToRem } from '~/logic/util/styles';
-
 import { Footer } from '../Footer';
 import { NavBar } from '../NavBar';
 import { Head } from './Head';
@@ -20,17 +17,10 @@ export function Layout({ children, title }: LayoutProps) {
         alignItems="center"
         display="flex"
         flexDirection="column"
-        // width="100vw"
+        height="100%"
       >
         <NavBar />
-        {/* <Box
-          height="100%"
-          maxWidth={pxToRem(CONTAINER_WIDTH)}
-          overflow={{ xs: 'hidden', xl: 'visible' }}
-          p={0}
-        > */}
         {children}
-        {/* </Box> */}
         <Footer />
       </Box>
     </>

@@ -6,6 +6,8 @@ import { useEffect, useRef, useState } from 'react';
 import { WheelSize } from '~/constants/images';
 import { BREAKPOINT_STRINGS } from '~/constants/theme';
 
+import { MaxWidthContainer } from './MaxWidthContainer';
+
 interface WheelImageProps {
   rotationDeg: number;
 }
@@ -44,13 +46,15 @@ export function ColorWheel() {
   }, []);
 
   return (
-    <WheelImage
-      alt=""
-      height={atLeastMd ? WheelSize.md : WheelSize.base}
-      role="presentation"
-      rotationDeg={rotationDeg}
-      src="/color_wheel.png"
-      width={atLeastMd ? WheelSize.md : WheelSize.base}
-    />
+    <MaxWidthContainer>
+      <WheelImage
+        alt=""
+        height={atLeastMd ? WheelSize.md : WheelSize.base}
+        role="presentation"
+        rotationDeg={rotationDeg}
+        src="/color_wheel.png"
+        width={atLeastMd ? WheelSize.md : WheelSize.base}
+      />
+    </MaxWidthContainer>
   );
 }

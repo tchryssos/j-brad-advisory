@@ -1,9 +1,4 @@
-import { styled } from '@mui/material';
 import { Head, Html, Main, NextScript } from 'next/document';
-
-const Body = styled('body')`
-  overscroll-behavior: none;
-`;
 
 export default function Document() {
   return (
@@ -14,10 +9,10 @@ export default function Document() {
           rel="stylesheet"
         />
       </Head>
-      <Body>
+      <body>
         <Main />
         <NextScript />
-      </Body>
+      </body>
     </Html>
   );
 }
