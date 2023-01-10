@@ -16,7 +16,7 @@ const createBreakpointString = (
   minOrMax: 'min' | 'max'
 ): BreakpointString => `(${minOrMax}-width: ${px}px)`;
 
-const BREAKPOINT_STRINGS: Record<BreakpointSize, BreakpointString> = {
+export const BREAKPOINT_STRINGS: Record<BreakpointSize, BreakpointString> = {
   xs: createBreakpointString(BREAKPOINT_VALUES.xs, 'min'),
   sm: createBreakpointString(BREAKPOINT_VALUES.sm, 'min'),
   md: createBreakpointString(BREAKPOINT_VALUES.md, 'min'),
