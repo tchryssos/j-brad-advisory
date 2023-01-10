@@ -27,6 +27,7 @@ const WheelSpaceGrid = styled('div')`
   grid-template-columns: ${WheelSize.base / 2}px auto;
   gap: ${pxToRem(44)};
   margin-top: ${pxToRem(60)};
+  margin-bottom: ${pxToRem(40)};
   ${getMediaQueryMinWidth('md')} {
     grid-template-columns: ${WheelSize.md / 2}px auto;
     gap: 0;
@@ -65,6 +66,7 @@ export function AreasOfFocus() {
             display="flex"
             flexDirection={{ xs: 'column', sm: 'row' }}
             justifyContent={{ xs: 'space-between', sm: 'space-around' }}
+            // This is arbitrary, just based on designs
             maxWidth={pxToRem(712)}
           >
             {focusAreas.map((focusArea, i) => (
@@ -87,7 +89,7 @@ export function AreasOfFocus() {
                   <ListItem key={focus}>
                     <Typography
                       component="span"
-                      fontSize={{ xs: pxToRem(18), md: pxToRem(20) }}
+                      fontSize={{ xs: pxToRem(14), md: pxToRem(20) }}
                       lineHeight="200%"
                     >
                       {focus}

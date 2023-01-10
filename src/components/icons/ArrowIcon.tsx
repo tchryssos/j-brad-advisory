@@ -17,7 +17,7 @@ const Path = styled('path')`
 `;
 
 const SvgWrapper = styled(SvgBase)`
-  width: fit-content;
+  width: ${pxToRem(12)};
   height: ${pxToRem(12)};
 `;
 

@@ -93,7 +93,7 @@ function About() {
               <ArrowIcon />
             </AboutLink>
           </Box>
-          <Box flexDirection="column" gap={2} mt={2.25}>
+          <Box display="flex" flexDirection="column" gap={2} mt={2.25}>
             <Typography>
               Experienced Operating Executive and independent board member with
               a demonstrated track record in technology, media and financial
