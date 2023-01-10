@@ -3,7 +3,7 @@ import { Typography } from '@mui/material/styles/createTypography';
 
 import { BreakpointSize, BreakpointString } from '~/typings/theme';
 
-export const BREAKPOINT_VALUES: Record<BreakpointSize, number> = {
+const BREAKPOINT_VALUES: Record<BreakpointSize, number> = {
   xs: 0,
   sm: 768,
   md: 1024,
@@ -16,7 +16,7 @@ export const createBreakpointString = (
   minOrMax: 'min' | 'max'
 ): BreakpointString => `(${minOrMax}-width: ${px}px)`;
 
-export const BREAKPOINT_STRINGS: Record<BreakpointSize, BreakpointString> = {
+const BREAKPOINT_STRINGS: Record<BreakpointSize, BreakpointString> = {
   xs: createBreakpointString(BREAKPOINT_VALUES.xs, 'min'),
   sm: createBreakpointString(BREAKPOINT_VALUES.sm, 'min'),
   md: createBreakpointString(BREAKPOINT_VALUES.md, 'min'),
@@ -24,7 +24,7 @@ export const BREAKPOINT_STRINGS: Record<BreakpointSize, BreakpointString> = {
   xl: createBreakpointString(BREAKPOINT_VALUES.xl, 'min'),
 };
 
-export const MEDIA_QUERY_STRING = '@media only screen and ';
+const MEDIA_QUERY_STRING = '@media only screen and ';
 
 export const getMediaQueryMinWidth = (
   breakpoint: BreakpointSize | number
@@ -35,7 +35,7 @@ export const getMediaQueryMinWidth = (
       : BREAKPOINT_STRINGS[breakpoint]
   }`;
 
-export const PROJECT_COLORS = {
+const PROJECT_COLORS = {
   lightBlue: '#E2FEFF',
   blue: '#1D56AB',
   darkBlue: '#120C52',
