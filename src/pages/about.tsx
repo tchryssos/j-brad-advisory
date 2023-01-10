@@ -25,6 +25,7 @@ const AboutWrapper = styled('div')`
   justify-content: center;
   position: relative;
   font-size: 1rem;
+  flex: 1;
   ${getMediaQueryMinWidth('md')} {
     font-size: ${pxToRem(18)};
   }

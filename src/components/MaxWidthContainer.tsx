@@ -15,7 +15,7 @@ export function MaxWidthContainer({
     <Box
       bgcolor={bgColor}
       display="flex"
-      height="100%"
+      // height="100%"
       justifyContent="center"
       width="100%"
     >
