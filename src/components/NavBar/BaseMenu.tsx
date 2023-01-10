@@ -1,6 +1,7 @@
 import { Box, IconButton as MUIIconButton, styled } from '@mui/material';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { clearBodyLocks, lock, unlock } from 'tua-body-scroll-lock';
 
 import { ABOUT_ROUTE, HOME_ROUTE } from '~/constants/routing';
 import { getMediaQueryMinWidth } from '~/constants/theme';
@@ -93,11 +94,46 @@ function LinkMenuItem({ href, title, onClick }: LinkMenuItemProps) {
   );
 }
 
-export function BaseMenu() {
-  const [isOpen, setIsOpen] = useState(false);
+interface FullMenuProps {
+  isOpen: boolean;
+  onClickClose: () => void;
+}
+
+function FullMenu({ isOpen, onClickClose }: FullMenuProps) {
   const gutterSize = useGetGutterSize();
 
-  // const [isScrollLocked, setScrollLocked] = useScrollLock();
+  useEffect(() => {
+    if (isOpen) {
+      lock();
+    } else {
+      unlock();
+    }
+    return () => {
+      unlock();
+      clearBodyLocks();
+    };
+  }, [isOpen]);
+
+  return (
+    <FullWrapper hidden={!isOpen} id={menuId}>
+      <InnerIconButton
+        aria-controls={menuId}
+        gutter={gutterSize}
+        onClick={onClickClose}
+      >
+        <CloseIcon />
+      </InnerIconButton>
+      <Menu>
+        <LinkMenuItem href={HOME_ROUTE} title="Home" onClick={onClickClose} />
+        <LinkMenuItem href={ABOUT_ROUTE} title="About" onClick={onClickClose} />
+        <LinkMenuItem onClick={onClickClose} />
+      </Menu>
+    </FullWrapper>
+  );
+}
+
+export function BaseMenu() {
+  const [isOpen, setIsOpen] = useState(false);
 
   const onToggle = () => {
     setIsOpen(!isOpen);
@@ -119,24 +155,7 @@ export function BaseMenu() {
       >
         <HamburgerIcon />
       </IconButton>
-      <FullWrapper hidden={!isOpen} id={menuId}>
-        <InnerIconButton
-          aria-controls={menuId}
-          gutter={gutterSize}
-          onClick={onClickClose}
-        >
-          <CloseIcon />
-        </InnerIconButton>
-        <Menu>
-          <LinkMenuItem href={HOME_ROUTE} title="Home" onClick={onClickClose} />
-          <LinkMenuItem
-            href={ABOUT_ROUTE}
-            title="About"
-            onClick={onClickClose}
-          />
-          <LinkMenuItem onClick={onClickClose} />
-        </Menu>
-      </FullWrapper>
+      <FullMenu isOpen={isOpen} onClickClose={onClickClose} />
     </BaseMenuComponent>
   );
 }
