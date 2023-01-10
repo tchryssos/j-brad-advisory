@@ -1,5 +1,4 @@
-import styled from '@emotion/styled';
-import { Flex } from '@mantine/core';
+import { Box, styled } from '@mui/material';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -19,9 +18,9 @@ interface StyledProps extends Pick<LinkProps, 'activeUnderline' | 'fontSize'> {
   isActive: boolean;
 }
 
-const StyledLink = styled.a<StyledProps>`
-  color: ${({ theme }) => theme.colors.gray[9]};
-  stroke: ${({ theme }) => theme.colors.gray[9]};
+const StyledLink = styled('a')<StyledProps>`
+  color: ${({ theme }) => theme.palette.text.primary};
+  stroke: ${({ theme }) => theme.palette.text.primary};
   text-decoration: none;
   font-size: ${({ fontSize }) => pxToRem(fontSize || 16)};
   position: relative;
@@ -31,17 +30,17 @@ const StyledLink = styled.a<StyledProps>`
       isActive && activeUnderline ? 'block' : 'none'};
     height: 1px;
     width: 100%;
-    background-color: ${({ theme }) => theme.colors.gray[9]};
+    background-color: ${({ theme }) => theme.palette.text.primary};
     position: absolute;
     bottom: -4px;
     left: 0;
   }
   :hover,
   :active {
-    color: ${({ theme }) => theme.colors.blue[6]};
-    stroke: ${({ theme }) => theme.colors.blue[6]};
+    color: ${({ theme }) => theme.palette.primary.main};
+    stroke: ${({ theme }) => theme.palette.primary.main};
     ::after {
-      background-color: ${({ theme }) => theme.colors.blue[6]};
+      background-color: ${({ theme }) => theme.palette.primary.main};
     }
   }
 `;
@@ -59,7 +58,12 @@ export function Link({
   const isActive = router.asPath === href;
 
   return (
-    <Flex align="center" direction="column" w="fit-content">
+    <Box
+      alignItems="center"
+      display="flex"
+      flexDirection="column"
+      width="fit-content"
+    >
       <NextLink href={href} legacyBehavior passHref>
         <StyledLink
           activeUnderline={activeUnderline}
@@ -73,6 +77,6 @@ export function Link({
           {children}
         </StyledLink>
       </NextLink>
-    </Flex>
+    </Box>
   );
 }

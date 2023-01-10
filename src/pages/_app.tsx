@@ -1,49 +1,28 @@
-import { MantineProvider } from '@mantine/core';
+import { CssBaseline, GlobalStyles, ThemeProvider } from '@mui/material';
 import type { AppProps } from 'next/app';
 
-import { BREAKPOINT_VALUES, CUSTOM_THEME_COLORS } from '~/constants/theme';
+import { THEME } from '~/constants/theme';
 
 function Page({ Component, pageProps }: AppProps) {
   return (
-    <MantineProvider
-      theme={{
-        colors: CUSTOM_THEME_COLORS,
-        fontFamily: 'Poppins, sans-serif',
-        breakpoints: {
-          xs: BREAKPOINT_VALUES.xs,
-          sm: BREAKPOINT_VALUES.sm,
-          md: BREAKPOINT_VALUES.md,
-          lg: BREAKPOINT_VALUES.lg,
-          xl: BREAKPOINT_VALUES.xl,
-        },
-        headings: { fontFamily: 'Poppins, sans-serif' },
-        components: {
-          Text: {
-            defaultProps: {
-              component: 'p',
-              p: 0,
-              m: 0,
-            },
+    <ThemeProvider theme={THEME}>
+      <GlobalStyles
+        styles={{
+          body: {
+            overscrollBehavior: 'none',
+            height: '100%',
           },
-          Grid: {
-            defaultProps: {
-              p: 0,
-              m: 0,
-            },
+          html: {
+            height: '100%',
           },
-          Title: {
-            defaultProps: {
-              fw: 600,
-            },
+          '#__next': {
+            height: '100%',
           },
-        },
-      }}
-      withGlobalStyles
-      withNormalizeCSS
-    >
-      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+        }}
+      />
+      <CssBaseline />
       <Component {...pageProps} />
-    </MantineProvider>
+    </ThemeProvider>
   );
 }
 

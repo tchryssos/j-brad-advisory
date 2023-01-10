@@ -1,12 +1,10 @@
-import styled from '@emotion/styled';
-import { Flex, SimpleGrid, Text, Title } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
+import { Box, styled, Typography, useTheme } from '@mui/material';
 
-import { BREAKPOINT_STRINGS, BREAKPOINT_VALUES } from '~/constants/theme';
 import { useGetGutterSize } from '~/logic/hooks/layout';
+import { pxToRem } from '~/logic/util/styles';
 
-import { ColorExtender } from '../ColorExtender';
 import { Image } from '../Image';
+import { MaxWidthContainer } from '../MaxWidthContainer';
 
 const pillarGroups = [
   {
@@ -34,15 +32,30 @@ const pillarGroups = [
   },
 ];
 
-const PillarGrid = styled(SimpleGrid)`
-  column-gap: 32px;
-  row-gap: 16px;
+const PillarGrid = styled('div')`
+  display: grid;
+  column-gap: ${pxToRem(32)};
+  row-gap: ${pxToRem(16)};
+  grid-template-columns: 1fr;
+
+  ${({ theme }) => theme.breakpoints.up('sm')} {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  ${({ theme }) => theme.breakpoints.up('md')} {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 `;
 
-const PillarItem = styled.div`
+const PillarItem = styled('div')`
   display: grid;
   gap: 20px;
   grid-template-rows: auto 1fr;
+  ${({ theme }) => theme.breakpoints.up('md')} {
+    :nth-child(even) {
+      margin-top: ${pxToRem(100)};
+    }
+  }
 `;
 
 const PillarPicture = styled(Image)`
@@ -52,63 +65,65 @@ const PillarPicture = styled(Image)`
 `;
 
 export function Pillars() {
-  const atLeastSm = useMediaQuery(BREAKPOINT_STRINGS.sm);
-  const atLeastMd = useMediaQuery(BREAKPOINT_STRINGS.md);
   const gutterSize = useGetGutterSize();
+  const theme = useTheme();
 
   return (
-    <Flex
-      bg="cyan.0"
-      direction="column"
-      gap={20}
-      mt={atLeastMd ? 68 : 40}
-      pb={80}
-      pos="relative"
-      pt={atLeastMd ? 154 : 80}
-      px={gutterSize}
-    >
-      <ColorExtender colorTuple={['cyan', 0]} />
-      <Title order={2} size={atLeastSm ? 20 : 18}>
-        Our pillars
-      </Title>
-      <PillarGrid
-        breakpoints={[
-          {
-            maxWidth: BREAKPOINT_VALUES.sm - 1,
-            cols: 1,
-          },
-          {
-            minWidth: BREAKPOINT_VALUES.sm,
-            cols: 2,
-          },
-          {
-            minWidth: BREAKPOINT_VALUES.md,
-            cols: 4,
-          },
-        ]}
-        cols={1}
-        p={0}
+    <MaxWidthContainer bgColor={theme.palette.primary.light}>
+      <Box
+        display="flex"
+        flexDirection="column"
+        gap={2.25}
+        mt={{ xs: pxToRem(40), md: pxToRem(68) }}
+        pb={10}
+        position="relative"
+        pt={{ xs: pxToRem(80), md: pxToRem(154) }}
+        px={gutterSize}
       >
-        {pillarGroups.map((pillarGroup) => (
-          <PillarItem key={pillarGroup.title}>
-            <PillarPicture
-              alt=""
-              fill
-              role="presentation"
-              src={pillarGroup.src}
-              style={{
-                objectFit: 'cover',
-              }}
-            />
-            <Flex direction="column" gap={20} h="100%">
-              <Title order={3} size={atLeastMd ? 20 : 18}>
-                {pillarGroup.title}
-              </Title>
-              <Text>{pillarGroup.description}</Text>
-            </Flex>
-          </PillarItem>
-        ))}
-      </PillarGrid>
-    </Flex>
+        <Typography
+          sx={{
+            fontSize: {
+              xs: 18,
+              sm: 20,
+            },
+          }}
+          variant="h2"
+        >
+          Our pillars
+        </Typography>
+        <PillarGrid>
+          {pillarGroups.map((pillarGroup) => (
+            <PillarItem key={pillarGroup.title}>
+              <PillarPicture
+                alt=""
+                fill
+                role="presentation"
+                src={pillarGroup.src}
+                style={{
+                  objectFit: 'cover',
+                }}
+              />
+              <Box
+                display="flex"
+                flexDirection="column"
+                gap={2.25}
+                height="100%"
+              >
+                <Typography
+                  fontSize={{
+                    xs: pxToRem(18),
+                    md: pxToRem(20),
+                  }}
+                  variant="h3"
+                >
+                  {pillarGroup.title}
+                </Typography>
+                <Typography>{pillarGroup.description}</Typography>
+              </Box>
+            </PillarItem>
+          ))}
+        </PillarGrid>
+      </Box>
+    </MaxWidthContainer>
   );
 }

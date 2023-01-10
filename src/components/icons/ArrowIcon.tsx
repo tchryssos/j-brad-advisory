@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import { styled } from '@mui/material';
 
 import { pxToRem } from '~/logic/util/styles';
 
@@ -8,7 +8,7 @@ interface LogoProps {
   className?: string;
 }
 
-const Path = styled.path`
+const Path = styled('path')`
   fill: none;
   stroke: inherit;
   stroke-width: 2;
@@ -17,7 +17,7 @@ const Path = styled.path`
 `;
 
 const SvgWrapper = styled(SvgBase)`
-  width: fit-content;
+  width: ${pxToRem(12)};
   height: ${pxToRem(12)};
 `;
 

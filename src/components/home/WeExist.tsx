@@ -1,14 +1,14 @@
-import styled from '@emotion/styled';
-import { Container, Flex, Text, TextProps, Title } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
+import {
+  Box,
+  Container,
+  styled,
+  Typography,
+  useMediaQuery,
+} from '@mui/material';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-import {
-  BREAKPOINT_STRINGS,
-  BREAKPOINT_VALUES,
-  getMediaQueryMinWidth,
-} from '~/constants/theme';
+import { BREAKPOINT_STRINGS, getMediaQueryMinWidth } from '~/constants/theme';
 import { useGetGutterSize } from '~/logic/hooks/layout';
 import { pxToRem } from '~/logic/util/styles';
 
@@ -41,7 +41,7 @@ const WeExistImage = styled(Image)`
 
 const SWAP_TIME = 3000;
 
-const WhyText = styled(Text)(({ isActive }) => ({
+const WhyText = styled(Typography)<{ isActive: boolean }>(({ isActive }) => ({
   position: 'absolute',
   top: 0,
   left: 0,
@@ -56,11 +56,7 @@ const WhyText = styled(Text)(({ isActive }) => ({
     transitionDuration: '0s',
     transitionDelay: '0.4s',
   }),
-})) as React.ComponentType<
-  TextProps & {
-    isActive: boolean;
-  }
->;
+}));
 
 interface MdContainerProps {
   children: React.ReactNode;
@@ -69,7 +65,12 @@ interface MdContainerProps {
 
 function MdContainer({ children, atLeastMd }: MdContainerProps) {
   return atLeastMd ? (
-    <Container maw={BREAKPOINT_VALUES.md} pos="relative" w="100%">
+    <Container
+      maxWidth="md"
+      sx={{
+        position: 'relative',
+      }}
+    >
       {children}
     </Container>
   ) : (
@@ -104,13 +105,16 @@ export function WeExist() {
   const imageSize = atLeastMd ? 292 : atLeastSm ? 175 : 104;
 
   return (
-    <Flex
-      direction="column"
-      h={{ base: pxToRem(232), md: pxToRem(384) }}
-      justify="center"
-      mt={{ base: 24, lg: 100 }}
-      pos="relative"
+    <Box
+      display="flex"
+      flexDirection="column"
+      height={{ xs: pxToRem(232), sm: pxToRem(384) }}
+      justifyContent="center"
+      // maxWidth={CONTAINER_WIDTH}
+      mt={{ xs: pxToRem(24), lg: pxToRem(100) }}
+      position="relative"
       px={gutterSize}
+      width="100%"
     >
       <MdContainer atLeastMd={atLeastMd}>
         <WeExistImage
@@ -120,23 +124,45 @@ export function WeExist() {
           src="/mushroom_circle.png"
           width={imageSize}
         />
-        <Title fw="bold" order={1} pos="relative" size={atLeastMd ? 72 : 32}>
+        <Typography
+          fontSize={{
+            xs: pxToRem(32),
+            md: pxToRem(72),
+          }}
+          fontWeight="bold"
+          position="relative"
+          variant="h1"
+        >
           We exist to
-        </Title>
-        {/* min-height 2 lines */}
-        <Flex mih={atLeastMd ? 223 : 100} pos="relative">
+        </Typography>
+
+        <Box
+          display="flex"
+          position="relative"
+          sx={{
+            minHeight: {
+              xs: pxToRem(100),
+              md: pxToRem(223),
+            },
+          }}
+        >
           {swappableText.map((t, i) => (
             <WhyText
-              fw="bold"
+              fontWeight="bold"
               isActive={i === activeTextIndex}
               key={t}
-              size={atLeastMd ? 72 : 32}
+              sx={{
+                fontSize: {
+                  xs: pxToRem(32),
+                  md: pxToRem(72),
+                },
+              }}
             >
               {t}
             </WhyText>
           ))}
-        </Flex>
+        </Box>
       </MdContainer>
-    </Flex>
+    </Box>
   );
 }

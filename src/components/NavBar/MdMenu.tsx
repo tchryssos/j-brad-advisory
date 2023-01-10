@@ -1,5 +1,4 @@
-import styled from '@emotion/styled';
-import { Flex } from '@mantine/core';
+import { Box, styled } from '@mui/material';
 
 import { EMAIL_LINK } from '~/constants/links';
 import { ABOUT_ROUTE, HOME_ROUTE } from '~/constants/routing';
@@ -8,22 +7,22 @@ import { pxToRem } from '~/logic/util/styles';
 
 import { Link } from '../Link';
 
-const ContactLink = styled.a`
+const ContactLink = styled('a')`
   font-size: ${pxToRem(16)};
-  border: 2px solid ${({ theme }) => theme.colors.gray[9]};
+  border: 2px solid ${({ theme }) => theme.palette.text.primary};
   border-radius: 500px;
   padding: ${pxToRem(4)} ${pxToRem(16)};
   text-decoration: none;
-  color: ${({ theme }) => theme.colors.gray[9]};
+  color: ${({ theme }) => theme.palette.text.primary};
   :hover,
   :active {
-    color: ${({ theme }) => theme.colors.blue[6]};
-    border-color: ${({ theme }) => theme.colors.blue[6]};
-    background-color: ${({ theme }) => theme.colors.blue[0]};
+    color: ${({ theme }) => theme.palette.primary.main};
+    border-color: ${({ theme }) => theme.palette.primary.main};
+    background-color: ${({ theme }) => theme.palette.primary.light};
   }
 `;
 
-const MdMenuWrapper = styled(Flex)`
+const MdMenuWrapper = styled(Box)`
   display: none;
   ${getMediaQueryMinWidth('md')} {
     display: flex;
@@ -32,7 +31,7 @@ const MdMenuWrapper = styled(Flex)`
 
 export function MdMenu() {
   return (
-    <MdMenuWrapper align="center" gap={40}>
+    <MdMenuWrapper alignItems="center" display="flex" gap={5}>
       <Link activeUnderline href={HOME_ROUTE}>
         Home
       </Link>

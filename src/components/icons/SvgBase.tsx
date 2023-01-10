@@ -1,11 +1,11 @@
-import styled from '@emotion/styled';
+import { styled } from '@mui/material';
 
-const Svg = styled.svg`
+const Svg = styled('svg')`
   height: 100%;
   width: 100%;
 `;
 
-export interface BaseSvgProps {
+interface BaseSvgProps {
   className?: string;
   viewBox?: string;
   title: string;

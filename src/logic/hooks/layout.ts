@@ -1,16 +1,20 @@
-import { useMediaQuery } from '@mantine/hooks';
+import { useMediaQuery } from '@mui/material';
 
 import { BREAKPOINT_STRINGS } from '~/constants/theme';
+
+import { pxToRem } from '../util/styles';
 
 export const useGetGutterSize = () => {
   const atLeastSm = useMediaQuery(BREAKPOINT_STRINGS.sm);
   const atLeastMd = useMediaQuery(BREAKPOINT_STRINGS.md);
 
+  let gutterSize = 16;
+
   if (atLeastMd) {
-    return 60;
+    gutterSize = 60;
   }
   if (atLeastSm) {
-    return 32;
+    gutterSize = 32;
   }
-  return 16;
+  return pxToRem(gutterSize);
 };

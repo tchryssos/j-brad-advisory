@@ -1,21 +1,21 @@
-import styled from '@emotion/styled';
+import { styled } from '@mui/material';
 
 import { EMAIL_LINK } from '~/constants/links';
 import { getMediaQueryMinWidth } from '~/constants/theme';
 import { pxToRem } from '~/logic/util/styles';
 
-const StyledLink = styled.a`
+const StyledLink = styled('a')`
   font-size: ${pxToRem(22)};
-  border: 2px solid ${({ theme }) => theme.colors.gray[9]};
+  border: 2px solid ${({ theme }) => theme.palette.text.primary};
   border-radius: 500px;
   padding: ${pxToRem(4)} ${pxToRem(16)};
   text-decoration: none;
-  color: ${({ theme }) => theme.colors.gray[9]};
+  color: ${({ theme }) => theme.palette.text.primary};
   :hover,
   :active {
-    color: ${({ theme }) => theme.colors.blue[6]};
-    border-color: ${({ theme }) => theme.colors.blue[6]};
-    background-color: ${({ theme }) => theme.colors.blue[0]};
+    color: ${({ theme }) => theme.palette.primary.main};
+    border-color: ${({ theme }) => theme.palette.primary.main};
+    background-color: ${({ theme }) => theme.palette.primary.light};
   }
   ${getMediaQueryMinWidth('md')} {
     font-size: ${pxToRem(16)};

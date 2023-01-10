@@ -1,10 +1,10 @@
-import styled from '@emotion/styled';
-import { Flex, List, Text, Title } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
+import { Box, List, ListItem, styled, Typography } from '@mui/material';
 
 import { WheelSize } from '~/constants/images';
-import { BREAKPOINT_STRINGS, getMediaQueryMinWidth } from '~/constants/theme';
+import { getMediaQueryMinWidth } from '~/constants/theme';
 import { pxToRem } from '~/logic/util/styles';
+
+import { MaxWidthContainer } from '../MaxWidthContainer';
 
 const focusAreas = [
   [
@@ -22,19 +22,32 @@ const focusAreas = [
   ],
 ];
 
-const WheelSpaceGrid = styled.div`
+const WheelSpaceGrid = styled('div')`
   display: grid;
   grid-template-columns: ${WheelSize.base / 2}px auto;
   gap: ${pxToRem(44)};
   margin-top: ${pxToRem(60)};
+  margin-bottom: ${pxToRem(40)};
   ${getMediaQueryMinWidth('md')} {
     grid-template-columns: ${WheelSize.md / 2}px auto;
     gap: 0;
   }
 `;
 
+const FocusList = styled(List)`
+  list-style: none;
+  padding-top: 0;
+  ${({ theme }) => theme.breakpoints.up('md')} {
+    padding-top: ${pxToRem(40)};
+  }
+  li {
+    padding: 0;
+    margin: 0;
+  }
+`;
+
 // Hacky fake list item to even out lists
-const FakeListItem = styled.div`
+const FakeListItem = styled('div')`
   height: 31px;
   display: none;
   ${getMediaQueryMinWidth('sm')} {
@@ -43,41 +56,52 @@ const FakeListItem = styled.div`
 `;
 
 export function AreasOfFocus() {
-  const atLeastSm = useMediaQuery(BREAKPOINT_STRINGS.sm);
-
   return (
-    <WheelSpaceGrid>
-      {/* This empty div creates space for the color wheel */}
-      <div />
-      <List listStyleType="none" pt={{ base: '', md: 40 }} type="unordered">
-        <Flex
-          direction={atLeastSm ? 'row' : 'column'}
-          justify={atLeastSm ? 'space-around' : 'space-between'}
-          maw={712}
-        >
-          {focusAreas.map((focusArea, i) => (
-            <Flex
-              direction="column"
-              justify="flex-end"
-              key={focusArea.join('-')}
-            >
-              {i === 0 && (
-                <Title mb={20} order={2} size={atLeastSm ? 20 : 18}>
-                  Our focus areas
-                </Title>
-              )}
-              {focusArea.map((focus) => (
-                <List.Item key={focus}>
-                  <Text component="span" lh="200%" size={atLeastSm ? 20 : 14}>
-                    {focus}
-                  </Text>
-                </List.Item>
-              ))}
-              {i === 1 && <FakeListItem />}
-            </Flex>
-          ))}
-        </Flex>
-      </List>
-    </WheelSpaceGrid>
+    <MaxWidthContainer>
+      <WheelSpaceGrid>
+        {/* This empty div creates space for the color wheel */}
+        <div />
+        <FocusList>
+          <Box
+            display="flex"
+            flexDirection={{ xs: 'column', sm: 'row' }}
+            justifyContent={{ xs: 'space-between', sm: 'space-around' }}
+            // This is arbitrary, just based on designs
+            maxWidth={pxToRem(712)}
+          >
+            {focusAreas.map((focusArea, i) => (
+              <Box
+                display="flex"
+                flexDirection="column"
+                justifyContent="flex-end"
+                key={focusArea.join('-')}
+              >
+                {i === 0 && (
+                  <Typography
+                    fontSize={{ xs: pxToRem(18), sm: pxToRem(20) }}
+                    mb={2.25}
+                    variant="h2"
+                  >
+                    Our focus areas
+                  </Typography>
+                )}
+                {focusArea.map((focus) => (
+                  <ListItem key={focus}>
+                    <Typography
+                      component="span"
+                      fontSize={{ xs: pxToRem(14), md: pxToRem(20) }}
+                      lineHeight="200%"
+                    >
+                      {focus}
+                    </Typography>
+                  </ListItem>
+                ))}
+                {i === 1 && <FakeListItem />}
+              </Box>
+            ))}
+          </Box>
+        </FocusList>
+      </WheelSpaceGrid>
+    </MaxWidthContainer>
   );
 }

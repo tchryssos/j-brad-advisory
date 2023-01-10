@@ -1,5 +1,3 @@
-import { Flex } from '@mantine/core';
-
 import { ColorWheel } from '~/components/ColorWheel';
 import { AreasOfFocus } from '~/components/home/AreasOfFocus';
 import { HowWeWork } from '~/components/home/HowWeWork';
@@ -12,11 +10,9 @@ function Home() {
   return (
     <Layout title="Home - J. Bradford Advisory">
       <WeExist />
-      <Flex direction="column" pos="relative">
-        <ColorWheel />
-        <AreasOfFocus />
-        <Pillars />
-      </Flex>
+      <ColorWheel />
+      <AreasOfFocus />
+      <Pillars />
       <WorkedWith />
       <HowWeWork />
     </Layout>

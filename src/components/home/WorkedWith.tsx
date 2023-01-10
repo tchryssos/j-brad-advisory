@@ -1,10 +1,10 @@
-import { Flex, Title } from '@mantine/core';
-import { useMediaQuery } from '@mantine/hooks';
+import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
 import Image from 'next/image';
 
 import { BREAKPOINT_STRINGS } from '~/constants/theme';
+import { pxToRem } from '~/logic/util/styles';
 
-import { ColorExtender } from '../ColorExtender';
+import { MaxWidthContainer } from '../MaxWidthContainer';
 
 type LogoObj = {
   src: string;
@@ -57,34 +57,44 @@ interface WorkedBlockProps {
 
 function WorkedBlock({ logos, title, i }: WorkedBlockProps) {
   const atLeastMd = useMediaQuery(BREAKPOINT_STRINGS.md);
+  const theme = useTheme();
 
   return (
-    <Flex
-      align="center"
-      bg="purple.8"
-      direction="column"
-      justify="center"
-      pb={40}
-      pos="relative"
-      pt={i === 1 ? 0 : 40}
-      w="100%"
-    >
-      <ColorExtender colorTuple={['purple', 8]} />
-      <Title color="gray.0" mb={40} order={2} size={atLeastMd ? 20 : 18}>
-        {title}
-      </Title>
-      <Flex direction={atLeastMd ? 'row' : 'column'}>
-        {logos.map((logo) => (
-          <Image
-            alt={logo.alt}
-            height={100}
-            key={logo.src}
-            src={logo.src}
-            width={200}
-          />
-        ))}
-      </Flex>
-    </Flex>
+    <MaxWidthContainer bgColor={theme.palette.primary.dark}>
+      <Box
+        alignItems="center"
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        pb={5}
+        position="relative"
+        pt={i === 1 ? 0 : 5}
+        width="100%"
+      >
+        <Typography
+          color={theme.palette.common.white}
+          fontSize={{
+            xs: pxToRem(18),
+            md: pxToRem(20),
+          }}
+          mb={5}
+          variant="h2"
+        >
+          {title}
+        </Typography>
+        <Box display="flex" flexDirection={atLeastMd ? 'row' : 'column'}>
+          {logos.map((logo) => (
+            <Image
+              alt={logo.alt}
+              height={100}
+              key={logo.src}
+              src={logo.src}
+              width={200}
+            />
+          ))}
+        </Box>
+      </Box>
+    </MaxWidthContainer>
   );
 }
 

@@ -1,11 +1,12 @@
-import styled from '@emotion/styled';
-import { useMediaQuery } from '@mantine/hooks';
+import { styled, useMediaQuery } from '@mui/material';
 import throttle from 'lodash.throttle';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
 import { WheelSize } from '~/constants/images';
 import { BREAKPOINT_STRINGS } from '~/constants/theme';
+
+import { MaxWidthContainer } from './MaxWidthContainer';
 
 interface WheelImageProps {
   rotationDeg: number;
@@ -20,8 +21,8 @@ const WheelImage = styled(Image)<WheelImageProps>`
 `;
 
 export function ColorWheel() {
-  const atLeastMd = useMediaQuery(BREAKPOINT_STRINGS.md);
   const scrollTopRef = useRef(globalThis.window?.scrollY || 0);
+  const atLeastMd = useMediaQuery(BREAKPOINT_STRINGS.md);
 
   const [rotationDeg, setRotationDeg] = useState(0);
 
@@ -45,13 +46,15 @@ export function ColorWheel() {
   }, []);
 
   return (
-    <WheelImage
-      alt=""
-      height={atLeastMd ? WheelSize.md : WheelSize.base}
-      role="presentation"
-      rotationDeg={rotationDeg}
-      src="/color_wheel.png"
-      width={atLeastMd ? WheelSize.md : WheelSize.base}
-    />
+    <MaxWidthContainer>
+      <WheelImage
+        alt=""
+        height={atLeastMd ? WheelSize.md : WheelSize.base}
+        role="presentation"
+        rotationDeg={rotationDeg}
+        src="/color_wheel.png"
+        width={atLeastMd ? WheelSize.md : WheelSize.base}
+      />
+    </MaxWidthContainer>
   );
 }

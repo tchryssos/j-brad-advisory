@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import { styled } from '@mui/material';
 
 import { getMediaQueryMinWidth } from '~/constants/theme';
 import { pxToRem } from '~/logic/util/styles';
@@ -9,14 +9,16 @@ interface LogoProps {
   className?: string;
 }
 
-const Path = styled.path`
+const Path = styled('path')`
   fill: inherit;
 `;
 
 const SvgWrapper = styled(SvgBase)`
-  width: fit-content;
+  /* I would leave this to auto, but safari has issues with non-specific SVG widths */
+  width: ${pxToRem(105)};
   height: ${pxToRem(26)};
   ${getMediaQueryMinWidth('md')} {
+    width: ${pxToRem(164)};
     height: ${pxToRem(40)};
   }
 `;
